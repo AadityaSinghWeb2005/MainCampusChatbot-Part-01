@@ -10,3 +10,5 @@ Current Features :
 
 5. Integration Chatgpt API for fallbacks
 
+6. Adding features : like talk to a human agent , Improvising UI , Trying to Implement MCP By Arjun 
+

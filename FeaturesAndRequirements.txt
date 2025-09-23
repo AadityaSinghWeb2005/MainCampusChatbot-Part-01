@@ -1,0 +1,12 @@
+Current Features : 
+
+1. Fee Online feature  ✅
+ 
+2. Fee structure : Fee structure Includes 4fees : Tution fee , Sem Exam fee , Development Fee , Registration Fee ✅
+
+3. Contact to account section ✅
+
+4. When asked for a Specific Details like Admissions , courses Go for the Official website of the college✅
+
+5. Integration Chatgpt API for fallbacks
+

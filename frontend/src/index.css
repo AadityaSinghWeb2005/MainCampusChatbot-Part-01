@@ -1,0 +1,11 @@
+/* Import Tailwind v4 */
+@import "tailwindcss";
+
+html, body {
+  font-size: 18px; /* You can adjust this value as needed */
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+}
+body {
+  font-family: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", monospace;
+}

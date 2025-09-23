@@ -1,0 +1,2647 @@
+{
+  "settings": {
+    "languages": [
+      "en",
+      "hi"
+    ],
+    "forceNER": true
+  },
+  "nluManager": {
+    "settings": {},
+    "languages": [
+      "en",
+      "hi"
+    ],
+    "intentDomains": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "language": "en",
+          "useNoneFeature": true,
+          "config": {
+            "activation": "leaky-relu",
+            "hiddenLayers": [],
+            "iterations": 20000,
+            "learningRate": 0.7,
+            "errorThresh": 0.00005,
+            "momentum": 0.5,
+            "deltaErrorThresh": 0.000001,
+            "maxDecimals": 9,
+            "leakyReluAlpha": 0.08,
+            "timeout": 120000
+          }
+        },
+        "language": "en",
+        "nluClassName": "BrainNLU",
+        "useMasterDomain": true,
+        "trainByDomain": false,
+        "keepStopwords": true,
+        "stemDict": {
+          "hello": {
+            "domain": "default",
+            "intent": "greeting"
+          },
+          "hi,there": {
+            "domain": "default",
+            "intent": "greeting"
+          },
+          "good,morn": {
+            "domain": "default",
+            "intent": "greeting"
+          },
+          "deadlin,fee,is,the,what": {
+            "domain": "default",
+            "intent": "fee_inquiry"
+          },
+          "due,is,payment,when": {
+            "domain": "default",
+            "intent": "fee_inquiry"
+          },
+          "about,fee,me,tell,the": {
+            "domain": "default",
+            "intent": "fee_inquiry"
+          },
+          "cost,is,the,what": {
+            "domain": "default",
+            "intent": "fee_inquiry"
+          },
+          "do,how,i,onlin,pay": {
+            "domain": "default",
+            "intent": "pay_online"
+          },
+          "can,i,onlin,pay": {
+            "domain": "default",
+            "intent": "pay_online"
+          },
+          "is,payment,portal,the,where": {
+            "domain": "default",
+            "intent": "pay_online"
+          },
+          "fee,onlin,payment,process": {
+            "domain": "default",
+            "intent": "pay_online"
+          },
+          "fee,how,my,pay,to": {
+            "domain": "default",
+            "intent": "pay_online"
+          },
+          "onlin,payment": {
+            "domain": "default",
+            "intent": "pay_online"
+          },
+          "for,how,instruct,pay,to": {
+            "domain": "default",
+            "intent": "pay_online_instructions"
+          },
+          "by,fee,how,onlin,pay,step,step,to": {
+            "domain": "default",
+            "intent": "pay_online_instructions"
+          },
+          "detail,fee,give,instruct,me,payment": {
+            "domain": "default",
+            "intent": "pay_online_instructions"
+          },
+          "fee,onlin,pay,step,to": {
+            "domain": "default",
+            "intent": "pay_online_instructions"
+          },
+          "for,me,onlin,pay,show,step,the": {
+            "domain": "default",
+            "intent": "pay_online_instructions"
+          },
+          "fee,structur": {
+            "domain": "default",
+            "intent": "fee_structure"
+          },
+          "fee,is,structur,the,what": {
+            "domain": "default",
+            "intent": "fee_structure"
+          },
+          "about,fee,me,structur,tell,the": {
+            "domain": "default",
+            "intent": "fee_structure"
+          },
+          "explain,fee,the": {
+            "domain": "default",
+            "intent": "fee_structure"
+          },
+          "do,fee,have,i,pay,to,what": {
+            "domain": "default",
+            "intent": "fee_structure"
+          },
+          "account,contact": {
+            "domain": "default",
+            "intent": "contact_accounts"
+          },
+          "account,depart,i,need,speak,the,to,to": {
+            "domain": "default",
+            "intent": "contact_accounts"
+          },
+          "account,call": {
+            "domain": "default",
+            "intent": "contact_accounts"
+          },
+          "account,sms,team,the": {
+            "domain": "default",
+            "intent": "contact_accounts"
+          },
+          "account,team,the,whatsapp": {
+            "domain": "default",
+            "intent": "contact_accounts"
+          },
+          "sms,via": {
+            "domain": "default",
+            "intent": "contact_via_sms"
+          },
+          "by,contact,me,sms": {
+            "domain": "default",
+            "intent": "contact_via_sms"
+          },
+          "via,whatsapp": {
+            "domain": "default",
+            "intent": "contact_via_whatsapp"
+          },
+          "by,contact,me,whatsapp": {
+            "domain": "default",
+            "intent": "contact_via_whatsapp"
+          },
+          "is,my,number,phonenumb": {
+            "domain": "default",
+            "intent": "provide_contact_number"
+          },
+          "is,it,phonenumb": {
+            "domain": "default",
+            "intent": "provide_contact_number"
+          },
+          "at,can,me,phonenumb,reach,you": {
+            "domain": "default",
+            "intent": "provide_contact_number"
+          },
+          "phonenumb": {
+            "domain": "default",
+            "intent": "provide_contact_number"
+          },
+          "here,is,my,number,phonenumb": {
+            "domain": "default",
+            "intent": "provide_contact_number"
+          },
+          "ani,are,scholarship,there": {
+            "domain": "default",
+            "intent": "scholarship"
+          },
+          "about,form,me,scholarship,tell,the": {
+            "domain": "default",
+            "intent": "scholarship"
+          },
+          "cours": {
+            "domain": "default",
+            "intent": "courses"
+          },
+          "about,cours,me,tell,the": {
+            "domain": "default",
+            "intent": "courses"
+          },
+          "are,cours,offer,what": {
+            "domain": "default",
+            "intent": "courses"
+          },
+          "cours,list,of": {
+            "domain": "default",
+            "intent": "courses"
+          },
+          "admiss": {
+            "domain": "default",
+            "intent": "admissions"
+          },
+          "admiss,get,how,to": {
+            "domain": "default",
+            "intent": "admissions"
+          },
+          "admiss,process": {
+            "domain": "default",
+            "intent": "admissions"
+          },
+          "admiss,i,take,to,want": {
+            "domain": "default",
+            "intent": "admissions"
+          },
+          "campus,life": {
+            "domain": "default",
+            "intent": "campus_life"
+          },
+          "about,campus,life,me,tell": {
+            "domain": "default",
+            "intent": "campus_life"
+          },
+          "campus,is,it,like,on,what": {
+            "domain": "default",
+            "intent": "campus_life"
+          },
+          "life,student": {
+            "domain": "default",
+            "intent": "campus_life"
+          },
+          "a,human,i,talk,to,to,want": {
+            "domain": "default",
+            "intent": "handoff"
+          },
+          "agent,an,connect,me,to": {
+            "domain": "default",
+            "intent": "handoff"
+          },
+          "repres,speak,to": {
+            "domain": "default",
+            "intent": "handoff"
+          }
+        },
+        "intentDict": {
+          "greeting": "default",
+          "fee_inquiry": "default",
+          "pay_online": "default",
+          "pay_online_instructions": "default",
+          "fee_structure": "default",
+          "contact_accounts": "default",
+          "contact_via_sms": "default",
+          "contact_via_whatsapp": "default",
+          "provide_contact_number": "default",
+          "scholarship": "default",
+          "courses": "default",
+          "admissions": "default",
+          "campus_life": "default",
+          "handoff": "default"
+        },
+        "useStemDict": true,
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "language": "en",
+              "useNoneFeature": true,
+              "config": {
+                "activation": "leaky-relu",
+                "hiddenLayers": [],
+                "iterations": 20000,
+                "learningRate": 0.7,
+                "errorThresh": 0.00005,
+                "momentum": 0.5,
+                "deltaErrorThresh": 0.000001,
+                "maxDecimals": 9,
+                "leakyReluAlpha": 0.08,
+                "timeout": 120000
+              }
+            },
+            "language": "en",
+            "keepStopwords": true,
+            "docs": [
+              {
+                "intent": "greeting",
+                "tokens": [
+                  "hello"
+                ]
+              },
+              {
+                "intent": "greeting",
+                "tokens": [
+                  "hi",
+                  "there"
+                ]
+              },
+              {
+                "intent": "greeting",
+                "tokens": [
+                  "good",
+                  "morn"
+                ]
+              },
+              {
+                "intent": "fee_inquiry",
+                "tokens": [
+                  "what",
+                  "is",
+                  "the",
+                  "fee",
+                  "deadlin"
+                ]
+              },
+              {
+                "intent": "fee_inquiry",
+                "tokens": [
+                  "when",
+                  "is",
+                  "payment",
+                  "due"
+                ]
+              },
+              {
+                "intent": "fee_inquiry",
+                "tokens": [
+                  "tell",
+                  "me",
+                  "about",
+                  "the",
+                  "fee"
+                ]
+              },
+              {
+                "intent": "fee_inquiry",
+                "tokens": [
+                  "what",
+                  "is",
+                  "the",
+                  "cost"
+                ]
+              },
+              {
+                "intent": "pay_online",
+                "tokens": [
+                  "how",
+                  "do",
+                  "i",
+                  "pay",
+                  "onlin"
+                ]
+              },
+              {
+                "intent": "pay_online",
+                "tokens": [
+                  "can",
+                  "i",
+                  "pay",
+                  "onlin"
+                ]
+              },
+              {
+                "intent": "pay_online",
+                "tokens": [
+                  "where",
+                  "is",
+                  "the",
+                  "payment",
+                  "portal"
+                ]
+              },
+              {
+                "intent": "pay_online",
+                "tokens": [
+                  "onlin",
+                  "fee",
+                  "payment",
+                  "process"
+                ]
+              },
+              {
+                "intent": "pay_online",
+                "tokens": [
+                  "how",
+                  "to",
+                  "pay",
+                  "my",
+                  "fee"
+                ]
+              },
+              {
+                "intent": "pay_online",
+                "tokens": [
+                  "onlin",
+                  "payment"
+                ]
+              },
+              {
+                "intent": "pay_online_instructions",
+                "tokens": [
+                  "instruct",
+                  "for",
+                  "how",
+                  "to",
+                  "pay"
+                ]
+              },
+              {
+                "intent": "pay_online_instructions",
+                "tokens": [
+                  "how",
+                  "to",
+                  "pay",
+                  "fee",
+                  "onlin",
+                  "step",
+                  "by",
+                  "step"
+                ]
+              },
+              {
+                "intent": "pay_online_instructions",
+                "tokens": [
+                  "give",
+                  "me",
+                  "detail",
+                  "fee",
+                  "payment",
+                  "instruct"
+                ]
+              },
+              {
+                "intent": "pay_online_instructions",
+                "tokens": [
+                  "step",
+                  "to",
+                  "pay",
+                  "fee",
+                  "onlin"
+                ]
+              },
+              {
+                "intent": "pay_online_instructions",
+                "tokens": [
+                  "show",
+                  "me",
+                  "the",
+                  "step",
+                  "for",
+                  "pay",
+                  "onlin"
+                ]
+              },
+              {
+                "intent": "fee_structure",
+                "tokens": [
+                  "fee",
+                  "structur"
+                ]
+              },
+              {
+                "intent": "fee_structure",
+                "tokens": [
+                  "what",
+                  "is",
+                  "the",
+                  "fee",
+                  "structur"
+                ]
+              },
+              {
+                "intent": "fee_structure",
+                "tokens": [
+                  "tell",
+                  "me",
+                  "about",
+                  "the",
+                  "fee",
+                  "structur"
+                ]
+              },
+              {
+                "intent": "fee_structure",
+                "tokens": [
+                  "explain",
+                  "the",
+                  "fee"
+                ]
+              },
+              {
+                "intent": "fee_structure",
+                "tokens": [
+                  "what",
+                  "fee",
+                  "do",
+                  "i",
+                  "have",
+                  "to",
+                  "pay"
+                ]
+              },
+              {
+                "intent": "contact_accounts",
+                "tokens": [
+                  "contact",
+                  "account"
+                ]
+              },
+              {
+                "intent": "contact_accounts",
+                "tokens": [
+                  "i",
+                  "need",
+                  "to",
+                  "speak",
+                  "to",
+                  "the",
+                  "account",
+                  "depart"
+                ]
+              },
+              {
+                "intent": "contact_accounts",
+                "tokens": [
+                  "call",
+                  "account"
+                ]
+              },
+              {
+                "intent": "contact_accounts",
+                "tokens": [
+                  "sms",
+                  "the",
+                  "account",
+                  "team"
+                ]
+              },
+              {
+                "intent": "contact_accounts",
+                "tokens": [
+                  "whatsapp",
+                  "the",
+                  "account",
+                  "team"
+                ]
+              },
+              {
+                "intent": "contact_via_sms",
+                "tokens": [
+                  "via",
+                  "sms"
+                ]
+              },
+              {
+                "intent": "contact_via_sms",
+                "tokens": [
+                  "contact",
+                  "me",
+                  "by",
+                  "sms"
+                ]
+              },
+              {
+                "intent": "contact_via_whatsapp",
+                "tokens": [
+                  "via",
+                  "whatsapp"
+                ]
+              },
+              {
+                "intent": "contact_via_whatsapp",
+                "tokens": [
+                  "contact",
+                  "me",
+                  "by",
+                  "whatsapp"
+                ]
+              },
+              {
+                "intent": "provide_contact_number",
+                "tokens": [
+                  "my",
+                  "number",
+                  "is",
+                  "phonenumb"
+                ]
+              },
+              {
+                "intent": "provide_contact_number",
+                "tokens": [
+                  "it",
+                  "is",
+                  "phonenumb"
+                ]
+              },
+              {
+                "intent": "provide_contact_number",
+                "tokens": [
+                  "you",
+                  "can",
+                  "reach",
+                  "me",
+                  "at",
+                  "phonenumb"
+                ]
+              },
+              {
+                "intent": "provide_contact_number",
+                "tokens": [
+                  "phonenumb"
+                ]
+              },
+              {
+                "intent": "provide_contact_number",
+                "tokens": [
+                  "here",
+                  "is",
+                  "my",
+                  "number",
+                  "phonenumb"
+                ]
+              },
+              {
+                "intent": "scholarship",
+                "tokens": [
+                  "are",
+                  "there",
+                  "ani",
+                  "scholarship"
+                ]
+              },
+              {
+                "intent": "scholarship",
+                "tokens": [
+                  "tell",
+                  "me",
+                  "about",
+                  "the",
+                  "scholarship",
+                  "form"
+                ]
+              },
+              {
+                "intent": "courses",
+                "tokens": [
+                  "cours"
+                ]
+              },
+              {
+                "intent": "courses",
+                "tokens": [
+                  "tell",
+                  "me",
+                  "about",
+                  "the",
+                  "cours"
+                ]
+              },
+              {
+                "intent": "courses",
+                "tokens": [
+                  "what",
+                  "cours",
+                  "are",
+                  "offer"
+                ]
+              },
+              {
+                "intent": "courses",
+                "tokens": [
+                  "list",
+                  "of",
+                  "cours"
+                ]
+              },
+              {
+                "intent": "admissions",
+                "tokens": [
+                  "admiss"
+                ]
+              },
+              {
+                "intent": "admissions",
+                "tokens": [
+                  "how",
+                  "to",
+                  "get",
+                  "admiss"
+                ]
+              },
+              {
+                "intent": "admissions",
+                "tokens": [
+                  "admiss",
+                  "process"
+                ]
+              },
+              {
+                "intent": "admissions",
+                "tokens": [
+                  "i",
+                  "want",
+                  "to",
+                  "take",
+                  "admiss"
+                ]
+              },
+              {
+                "intent": "campus_life",
+                "tokens": [
+                  "campus",
+                  "life"
+                ]
+              },
+              {
+                "intent": "campus_life",
+                "tokens": [
+                  "tell",
+                  "me",
+                  "about",
+                  "campus",
+                  "life"
+                ]
+              },
+              {
+                "intent": "campus_life",
+                "tokens": [
+                  "what",
+                  "is",
+                  "it",
+                  "like",
+                  "on",
+                  "campus"
+                ]
+              },
+              {
+                "intent": "campus_life",
+                "tokens": [
+                  "student",
+                  "life"
+                ]
+              },
+              {
+                "intent": "handoff",
+                "tokens": [
+                  "i",
+                  "want",
+                  "to",
+                  "talk",
+                  "to",
+                  "a",
+                  "human"
+                ]
+              },
+              {
+                "intent": "handoff",
+                "tokens": [
+                  "connect",
+                  "me",
+                  "to",
+                  "an",
+                  "agent"
+                ]
+              },
+              {
+                "intent": "handoff",
+                "tokens": [
+                  "speak",
+                  "to",
+                  "repres"
+                ]
+              }
+            ],
+            "features": {
+              "hello": 1,
+              "hi": 1,
+              "there": 2,
+              "good": 1,
+              "morn": 1,
+              "what": 6,
+              "is": 9,
+              "the": 13,
+              "fee": 12,
+              "deadlin": 1,
+              "when": 1,
+              "payment": 5,
+              "due": 1,
+              "tell": 5,
+              "me": 11,
+              "about": 5,
+              "cost": 1,
+              "how": 5,
+              "do": 2,
+              "i": 6,
+              "pay": 8,
+              "onlin": 7,
+              "can": 2,
+              "where": 1,
+              "portal": 1,
+              "process": 2,
+              "to": 13,
+              "my": 3,
+              "instruct": 2,
+              "for": 2,
+              "step": 4,
+              "by": 3,
+              "give": 1,
+              "detail": 1,
+              "show": 1,
+              "structur": 3,
+              "explain": 1,
+              "have": 1,
+              "contact": 3,
+              "account": 5,
+              "need": 1,
+              "speak": 2,
+              "depart": 1,
+              "call": 1,
+              "sms": 3,
+              "team": 2,
+              "whatsapp": 3,
+              "via": 2,
+              "number": 2,
+              "phonenumb": 5,
+              "it": 2,
+              "you": 1,
+              "reach": 1,
+              "at": 1,
+              "here": 1,
+              "are": 2,
+              "ani": 1,
+              "scholarship": 2,
+              "form": 1,
+              "cours": 4,
+              "offer": 1,
+              "list": 1,
+              "of": 1,
+              "admiss": 4,
+              "get": 1,
+              "want": 2,
+              "take": 1,
+              "campus": 3,
+              "life": 3,
+              "like": 1,
+              "on": 1,
+              "student": 1,
+              "talk": 1,
+              "a": 1,
+              "human": 1,
+              "connect": 1,
+              "an": 1,
+              "agent": 1,
+              "repres": 1
+            },
+            "isEditing": false,
+            "className": "BrainNLU",
+            "classifier": {
+              "className": "BrainClassifier",
+              "settings": {
+                "language": "en",
+                "useNoneFeature": true,
+                "config": {
+                  "activation": "leaky-relu",
+                  "hiddenLayers": [],
+                  "iterations": 20000,
+                  "learningRate": 0.7,
+                  "errorThresh": 0.00005,
+                  "momentum": 0.5,
+                  "deltaErrorThresh": 0.000001,
+                  "maxDecimals": 9,
+                  "leakyReluAlpha": 0.08,
+                  "timeout": 120000
+                }
+              },
+              "labels": [],
+              "network": {
+                "sizes": [
+                  80,
+                  15
+                ],
+                "layers": [
+                  {
+                    "hello": {},
+                    "hi": {},
+                    "there": {},
+                    "good": {},
+                    "morn": {},
+                    "what": {},
+                    "is": {},
+                    "the": {},
+                    "fee": {},
+                    "deadlin": {},
+                    "when": {},
+                    "payment": {},
+                    "due": {},
+                    "tell": {},
+                    "me": {},
+                    "about": {},
+                    "cost": {},
+                    "how": {},
+                    "do": {},
+                    "i": {},
+                    "pay": {},
+                    "onlin": {},
+                    "can": {},
+                    "where": {},
+                    "portal": {},
+                    "process": {},
+                    "to": {},
+                    "my": {},
+                    "instruct": {},
+                    "for": {},
+                    "step": {},
+                    "by": {},
+                    "give": {},
+                    "detail": {},
+                    "show": {},
+                    "structur": {},
+                    "explain": {},
+                    "have": {},
+                    "contact": {},
+                    "account": {},
+                    "need": {},
+                    "speak": {},
+                    "depart": {},
+                    "call": {},
+                    "sms": {},
+                    "team": {},
+                    "whatsapp": {},
+                    "via": {},
+                    "number": {},
+                    "phonenumb": {},
+                    "it": {},
+                    "you": {},
+                    "reach": {},
+                    "at": {},
+                    "here": {},
+                    "are": {},
+                    "ani": {},
+                    "scholarship": {},
+                    "form": {},
+                    "cours": {},
+                    "offer": {},
+                    "list": {},
+                    "of": {},
+                    "admiss": {},
+                    "get": {},
+                    "want": {},
+                    "take": {},
+                    "campus": {},
+                    "life": {},
+                    "like": {},
+                    "on": {},
+                    "student": {},
+                    "talk": {},
+                    "a": {},
+                    "human": {},
+                    "connect": {},
+                    "an": {},
+                    "agent": {},
+                    "repres": {},
+                    "nonefeature": {}
+                  },
+                  {
+                    "greeting": {
+                      "bias": 2.01138341,
+                      "weights": {
+                        "hello": 10.40133667,
+                        "hi": 6.275064468,
+                        "there": 4.204291821,
+                        "good": 5.240394115,
+                        "morn": 5.240394115,
+                        "what": -0.332842976,
+                        "is": -0.884404302,
+                        "the": -0.755904078,
+                        "fee": -1.348463893,
+                        "deadlin": -0.182273582,
+                        "when": -0.269432336,
+                        "payment": -1.001774788,
+                        "due": -0.269432336,
+                        "tell": -0.16792205,
+                        "me": -0.623227239,
+                        "about": -0.16792205,
+                        "cost": -0.143297762,
+                        "how": -0.462304413,
+                        "do": -0.192607388,
+                        "i": -0.517429531,
+                        "pay": -0.633821607,
+                        "onlin": -1.047009587,
+                        "can": -0.295336694,
+                        "where": -0.04221075,
+                        "portal": -0.04221075,
+                        "process": -0.515064299,
+                        "to": -1.016869783,
+                        "my": -0.172727883,
+                        "instruct": -0.207124755,
+                        "for": -0.175445646,
+                        "by": -0.199764684,
+                        "give": -0.031679127,
+                        "detail": -0.031679127,
+                        "structur": -0.695646346,
+                        "explain": -0.121002421,
+                        "contact": -0.753326654,
+                        "account": -1.348530412,
+                        "need": -0.008764606,
+                        "speak": -0.502588272,
+                        "depart": -0.008764606,
+                        "call": -0.695770919,
+                        "sms": -0.795551121,
+                        "team": -0.090432979,
+                        "whatsapp": -0.769247711,
+                        "via": -1.274601221,
+                        "number": -0.102909036,
+                        "phonenumb": -2.003649235,
+                        "it": -0.144280821,
+                        "you": -0.099386856,
+                        "reach": -0.099386856,
+                        "at": -0.099386856,
+                        "are": -2.078046083,
+                        "ani": -2.070774317,
+                        "scholarship": -2.070774317,
+                        "cours": -1.997427344,
+                        "offer": -0.007271665,
+                        "list": -0.351952076,
+                        "of": -0.351952076,
+                        "admiss": -1.994192123,
+                        "get": -0.024432546,
+                        "want": -0.120108627,
+                        "take": -0.000395383,
+                        "campus": -0.673149943,
+                        "life": -1.343018889,
+                        "student": -0.669869542,
+                        "talk": -0.119713239,
+                        "a": -0.119713239,
+                        "human": -0.119713239,
+                        "connect": -0.124475412,
+                        "an": -0.124475412,
+                        "agent": -0.124475412,
+                        "repres": -0.493823767,
+                        "nonefeature": -1.976122856
+                      }
+                    },
+                    "fee_inquiry": {
+                      "bias": -1.369719899,
+                      "weights": {
+                        "what": 1.801219463,
+                        "is": 3.747572184,
+                        "the": 1.255146384,
+                        "fee": 4.431447029,
+                        "deadlin": 2.905394554,
+                        "when": 5.106723309,
+                        "payment": -0.110331111,
+                        "due": 5.106723309,
+                        "tell": 2.974809408,
+                        "me": 1.138826847,
+                        "about": 2.974809408,
+                        "cost": 6.805933475,
+                        "how": -0.445685178,
+                        "do": -0.830915272,
+                        "i": -1.014780521,
+                        "pay": -1.584443927,
+                        "onlin": -1.952693701,
+                        "can": -0.165649563,
+                        "where": -2.581758738,
+                        "portal": -2.581758738,
+                        "process": -1.098723531,
+                        "to": -0.868007243,
+                        "my": -0.919723332,
+                        "instruct": -1.433225393,
+                        "for": -0.355598301,
+                        "step": -0.371569484,
+                        "by": -0.063130923,
+                        "give": -1.433225393,
+                        "detail": -1.433225393,
+                        "show": -0.355598301,
+                        "structur": -11.546096802,
+                        "explain": -4.31959486,
+                        "have": -0.617510974,
+                        "contact": -0.08397606,
+                        "account": -0.432127357,
+                        "need": -0.018215602,
+                        "speak": -0.018215602,
+                        "depart": -0.018215602,
+                        "call": -0.033979781,
+                        "sms": -0.241291955,
+                        "team": -0.343115687,
+                        "whatsapp": -0.197086662,
+                        "via": -0.048103176,
+                        "number": -0.703413665,
+                        "phonenumb": -1.416046143,
+                        "it": -1.537887573,
+                        "here": -0.134490624,
+                        "are": -0.219922826,
+                        "scholarship": -3.588399887,
+                        "form": -3.588399887,
+                        "cours": -6.861216068,
+                        "offer": -0.219922826,
+                        "campus": -3.259968758,
+                        "life": -2.43471384,
+                        "like": -0.825254679,
+                        "on": -0.825254679,
+                        "nonefeature": 4.34e-7
+                      }
+                    },
+                    "pay_online": {
+                      "bias": 0.292695476,
+                      "weights": {
+                        "hello": -0.279632747,
+                        "hi": -0.083396509,
+                        "there": -0.206012592,
+                        "good": -0.143807068,
+                        "morn": -0.143807068,
+                        "what": -2.207996368,
+                        "is": -2.246011496,
+                        "the": 0.449045569,
+                        "fee": 0.02535251,
+                        "when": -2.600709677,
+                        "payment": 7.178438187,
+                        "due": -2.600709677,
+                        "tell": -0.020518031,
+                        "me": -1.925833583,
+                        "about": -0.020518031,
+                        "cost": -0.001886271,
+                        "how": 3.734936953,
+                        "do": -0.81990701,
+                        "i": 1.611227155,
+                        "pay": 2.923984766,
+                        "onlin": 4.797546387,
+                        "can": 2.900500298,
+                        "where": 3.425257206,
+                        "portal": 3.425257206,
+                        "process": 0.375901818,
+                        "to": -1.418321848,
+                        "my": 6.885164738,
+                        "instruct": -3.108180761,
+                        "for": -2.418653011,
+                        "step": -6.613362312,
+                        "by": -3.907051802,
+                        "give": -1.25005734,
+                        "detail": -1.25005734,
+                        "show": -0.560530663,
+                        "structur": -0.831688106,
+                        "explain": -1.214038849,
+                        "have": -1.631644607,
+                        "contact": -0.142662227,
+                        "account": -0.847883463,
+                        "need": -0.369668305,
+                        "speak": -0.369668305,
+                        "depart": -0.369668305,
+                        "call": -0.092826836,
+                        "sms": -0.313847691,
+                        "team": -0.242726147,
+                        "whatsapp": -0.275876135,
+                        "via": -0.346997678,
+                        "number": -2.334986687,
+                        "phonenumb": -2.588933706,
+                        "it": -0.166840181,
+                        "you": -0.094727553,
+                        "reach": -0.094727553,
+                        "at": -0.094727553,
+                        "here": -0.504420042,
+                        "are": -0.122616112,
+                        "ani": -0.122616112,
+                        "scholarship": -0.122616112,
+                        "cours": -0.329476833,
+                        "list": -0.112092227,
+                        "of": -0.112092227,
+                        "admiss": -2.06238699,
+                        "get": -0.531777561,
+                        "want": -0.194426179,
+                        "take": -0.045733955,
+                        "campus": -0.123677388,
+                        "life": -0.225102186,
+                        "like": -0.007620809,
+                        "on": -0.007620809,
+                        "student": -0.10904561,
+                        "talk": -0.148692235,
+                        "a": -0.148692235,
+                        "human": -0.148692235,
+                        "nonefeature": -0.281600714
+                      }
+                    },
+                    "pay_online_instructions": {
+                      "bias": -1.416479727,
+                      "weights": {
+                        "there": -0.014319305,
+                        "what": -1.536269307,
+                        "is": -0.614002883,
+                        "the": -1.343539476,
+                        "fee": 0.793584228,
+                        "when": -0.102011636,
+                        "payment": -0.133210585,
+                        "due": -0.102011636,
+                        "tell": -0.57742548,
+                        "me": 0.898270965,
+                        "about": -0.57742548,
+                        "how": -0.770003915,
+                        "do": -2.040661097,
+                        "i": -2.772670984,
+                        "pay": 2.922157049,
+                        "onlin": 1.553289056,
+                        "can": -0.792861938,
+                        "process": -1.511007667,
+                        "to": 2.278089762,
+                        "my": -3.802023888,
+                        "instruct": 6.163973331,
+                        "for": 3.310872316,
+                        "step": 6.337251663,
+                        "by": 0.836745977,
+                        "give": 3.09952569,
+                        "detail": 3.09952569,
+                        "show": 0.246424586,
+                        "structur": -1.63598609,
+                        "explain": -0.423473805,
+                        "have": -1.024277806,
+                        "contact": -1.158909917,
+                        "account": -0.197092444,
+                        "need": -0.077073015,
+                        "speak": -0.46576643,
+                        "depart": -0.077073015,
+                        "call": -0.054848298,
+                        "sms": -0.654542685,
+                        "whatsapp": -0.521982968,
+                        "via": -0.082786925,
+                        "phonenumb": -0.161867991,
+                        "you": -0.156005651,
+                        "reach": -0.156005651,
+                        "at": -0.156005651,
+                        "are": -0.014319305,
+                        "ani": -0.014319305,
+                        "scholarship": -0.014319305,
+                        "cours": -0.028825169,
+                        "list": -0.012391078,
+                        "of": -0.012391078,
+                        "admiss": -0.956460536,
+                        "get": -0.946528256,
+                        "want": -0.018080551,
+                        "talk": -0.018080551,
+                        "a": -0.018080551,
+                        "human": -0.018080551,
+                        "connect": -0.62050885,
+                        "an": -0.62050885,
+                        "agent": -0.62050885,
+                        "repres": -0.388693422,
+                        "nonefeature": 4.34e-7
+                      }
+                    },
+                    "fee_structure": {
+                      "bias": -1.330686898,
+                      "weights": {
+                        "hello": -0.035412073,
+                        "hi": -0.017173655,
+                        "there": -0.088781275,
+                        "good": -0.03056041,
+                        "morn": -0.03056041,
+                        "what": 0.455105603,
+                        "is": -3.404485941,
+                        "the": 2.643713713,
+                        "fee": 3.65068531,
+                        "deadlin": -4.333949089,
+                        "payment": -1.354438782,
+                        "tell": -1.003944278,
+                        "me": -1.817600131,
+                        "about": -1.003944278,
+                        "cost": -0.102271169,
+                        "how": -2.139439106,
+                        "do": 3.307010889,
+                        "i": 2.26163435,
+                        "pay": 0.589585781,
+                        "onlin": -2.581129789,
+                        "can": -0.1360787,
+                        "process": -0.997019708,
+                        "to": -0.102657899,
+                        "my": -1.816168427,
+                        "instruct": -0.365699381,
+                        "step": -1.228834152,
+                        "by": -0.588746488,
+                        "give": -0.365699381,
+                        "detail": -0.365699381,
+                        "structur": 11.008134842,
+                        "explain": 7.439431667,
+                        "have": 3.670566797,
+                        "contact": -0.548783779,
+                        "account": -1.741605759,
+                        "need": -0.690798461,
+                        "speak": -0.690798461,
+                        "depart": -0.690798461,
+                        "call": -0.126480892,
+                        "sms": -0.686415315,
+                        "team": -0.687419534,
+                        "whatsapp": -0.505142391,
+                        "via": -0.192261279,
+                        "number": -0.327576995,
+                        "phonenumb": -0.708980083,
+                        "it": -0.663352191,
+                        "you": -0.1360787,
+                        "reach": -0.1360787,
+                        "at": -0.1360787,
+                        "here": -0.061939187,
+                        "are": -0.431225091,
+                        "ani": -0.071607627,
+                        "scholarship": -0.866112351,
+                        "form": -0.794504762,
+                        "cours": -1.006017089,
+                        "offer": -0.359617412,
+                        "admiss": -0.259881228,
+                        "get": -0.010421982,
+                        "want": -0.354578763,
+                        "take": -0.198808447,
+                        "campus": -0.445881605,
+                        "life": -0.044285983,
+                        "like": -0.442287534,
+                        "on": -0.442287534,
+                        "student": -0.040691927,
+                        "talk": -0.155770451,
+                        "a": -0.155770451,
+                        "human": -0.155770451,
+                        "nonefeature": -0.037396021
+                      }
+                    },
+                    "contact_accounts": {
+                      "bias": 0.423842115,
+                      "weights": {
+                        "hello": -0.423155457,
+                        "hi": -0.146203697,
+                        "there": -0.296169907,
+                        "good": -0.219275221,
+                        "morn": -0.219275221,
+                        "what": -0.656165481,
+                        "is": -1.21165967,
+                        "the": 0.775830746,
+                        "fee": -0.879509747,
+                        "deadlin": -0.302311361,
+                        "payment": -0.25037536,
+                        "tell": -0.640321791,
+                        "me": -1.936987519,
+                        "about": -0.640321791,
+                        "cost": -0.284013122,
+                        "how": -0.338589936,
+                        "do": -0.10149651,
+                        "i": 0.099654131,
+                        "pay": -0.30280146,
+                        "onlin": -0.30280146,
+                        "can": -0.2119665,
+                        "where": -0.25037536,
+                        "portal": -0.25037536,
+                        "process": -0.052896608,
+                        "to": -0.530145288,
+                        "my": -0.213480622,
+                        "for": -0.077811792,
+                        "step": -0.077811792,
+                        "by": -1.13038063,
+                        "show": -0.077811792,
+                        "structur": -0.009834679,
+                        "explain": -0.567363679,
+                        "contact": 2.663585901,
+                        "account": 9.394539833,
+                        "need": 0.984162152,
+                        "speak": 0.36646688,
+                        "depart": 0.984162152,
+                        "call": 2.692713022,
+                        "sms": -0.019280471,
+                        "team": 1.923700333,
+                        "whatsapp": -0.018546462,
+                        "via": -0.831145883,
+                        "number": -0.213480622,
+                        "phonenumb": -0.598027408,
+                        "it": -0.151644498,
+                        "you": -0.08847335,
+                        "reach": -0.08847335,
+                        "at": -0.08847335,
+                        "here": -0.031252384,
+                        "are": -0.209972546,
+                        "ani": -0.149966225,
+                        "scholarship": -0.551510453,
+                        "form": -0.401544154,
+                        "cours": -0.523766398,
+                        "offer": -0.060006313,
+                        "list": -0.074752539,
+                        "of": -0.074752539,
+                        "admiss": -0.753168583,
+                        "get": -0.237093449,
+                        "want": -0.65951854,
+                        "take": -0.368301183,
+                        "campus": -0.164218172,
+                        "life": -0.320499212,
+                        "student": -0.156281024,
+                        "talk": -0.291217357,
+                        "a": -0.291217357,
+                        "human": -0.291217357,
+                        "repres": -0.617695391,
+                        "nonefeature": -0.423978627
+                      }
+                    },
+                    "contact_via_sms": {
+                      "bias": 0.217450627,
+                      "weights": {
+                        "hello": -0.217415541,
+                        "hi": -0.0904577,
+                        "there": -0.157423392,
+                        "good": -0.119399376,
+                        "morn": -0.119399376,
+                        "what": -0.04186013,
+                        "is": -0.147869796,
+                        "the": -2.791168213,
+                        "fee": -0.420791894,
+                        "when": -0.009267068,
+                        "payment": -0.211273238,
+                        "due": -0.009267068,
+                        "tell": -0.37012431,
+                        "me": 0.955774069,
+                        "about": -0.37012431,
+                        "how": -0.258356303,
+                        "do": -0.003600718,
+                        "i": -0.036177393,
+                        "pay": -0.240617499,
+                        "onlin": -0.262258738,
+                        "can": -0.224316418,
+                        "process": -0.087710276,
+                        "to": -0.516880393,
+                        "my": -0.068830311,
+                        "instruct": -0.180364981,
+                        "for": -0.002495517,
+                        "step": -0.237016782,
+                        "by": 1.718512416,
+                        "give": -0.180364981,
+                        "detail": -0.180364981,
+                        "show": -0.002495517,
+                        "contact": 1.542782307,
+                        "account": -2.949309349,
+                        "speak": -0.009590279,
+                        "sms": 8.063832283,
+                        "team": -2.539058447,
+                        "whatsapp": -4.433317184,
+                        "via": 4.216540337,
+                        "number": -0.068830311,
+                        "phonenumb": -0.412074357,
+                        "it": -0.069772445,
+                        "you": -0.224316418,
+                        "reach": -0.224316418,
+                        "at": -0.224316418,
+                        "are": -0.103508711,
+                        "ani": -0.066965707,
+                        "scholarship": -0.215272829,
+                        "form": -0.148307085,
+                        "cours": -0.300624102,
+                        "offer": -0.036543,
+                        "list": -0.051454831,
+                        "of": -0.051454831,
+                        "admiss": -0.257945806,
+                        "get": -0.020234296,
+                        "want": -0.032576673,
+                        "take": -0.015796827,
+                        "campus": -0.188358605,
+                        "life": -0.250525475,
+                        "like": -0.005317126,
+                        "on": -0.005317126,
+                        "student": -0.067483969,
+                        "talk": -0.016779844,
+                        "a": -0.016779844,
+                        "human": -0.016779844,
+                        "connect": -0.219957799,
+                        "an": -0.219957799,
+                        "agent": -0.219957799,
+                        "repres": -0.009590279,
+                        "nonefeature": -0.218070298
+                      }
+                    },
+                    "contact_via_whatsapp": {
+                      "bias": 0.084918873,
+                      "weights": {
+                        "hello": -0.177392527,
+                        "hi": -0.085856877,
+                        "there": -0.173938826,
+                        "good": -0.117217161,
+                        "morn": -0.117217161,
+                        "what": -0.052476071,
+                        "is": -0.188877583,
+                        "the": -2.796239853,
+                        "fee": -0.469723463,
+                        "when": -0.008728643,
+                        "payment": -0.229060546,
+                        "due": -0.008728643,
+                        "tell": -0.485784829,
+                        "me": 0.902722836,
+                        "about": -0.485784829,
+                        "how": -0.307934672,
+                        "do": -0.00624108,
+                        "i": -0.046134945,
+                        "pay": -0.279982239,
+                        "onlin": -0.309824228,
+                        "can": -0.269209415,
+                        "process": -0.102153316,
+                        "to": -0.599360704,
+                        "my": -0.089047089,
+                        "instruct": -0.190489858,
+                        "for": -0.004403577,
+                        "step": -0.273741156,
+                        "by": 1.830555439,
+                        "give": -0.190489858,
+                        "detail": -0.190489858,
+                        "show": -0.004403577,
+                        "contact": 1.48845005,
+                        "account": -3.045282125,
+                        "speak": -0.010489648,
+                        "sms": -4.304806709,
+                        "team": -2.433838844,
+                        "whatsapp": 8.192061424,
+                        "via": 4.221194744,
+                        "number": -0.089047089,
+                        "phonenumb": -0.512744367,
+                        "it": -0.091101848,
+                        "you": -0.269209415,
+                        "reach": -0.269209415,
+                        "at": -0.269209415,
+                        "are": -0.134498417,
+                        "ani": -0.088081948,
+                        "scholarship": -0.298371136,
+                        "form": -0.21028921,
+                        "cours": -0.374013215,
+                        "offer": -0.046416488,
+                        "list": -0.058547698,
+                        "of": -0.058547698,
+                        "admiss": -0.286226481,
+                        "get": -0.032356013,
+                        "want": -0.039893869,
+                        "take": -0.02048571,
+                        "campus": -0.209529147,
+                        "life": -0.278988332,
+                        "like": -0.006059584,
+                        "on": -0.006059584,
+                        "student": -0.075518757,
+                        "talk": -0.019408161,
+                        "a": -0.019408161,
+                        "human": -0.019408161,
+                        "connect": -0.247283399,
+                        "an": -0.247283399,
+                        "agent": -0.247283399,
+                        "repres": -0.010489648,
+                        "nonefeature": -0.182944402
+                      }
+                    },
+                    "provide_contact_number": {
+                      "bias": 0.863443924,
+                      "weights": {
+                        "hello": -0.832115769,
+                        "hi": -0.300853521,
+                        "there": -0.5514732,
+                        "good": -0.425793886,
+                        "morn": -0.425793886,
+                        "what": -1.28726995,
+                        "is": -0.165016234,
+                        "the": -1.057224751,
+                        "fee": -0.585437477,
+                        "deadlin": -0.187296689,
+                        "when": -0.657553315,
+                        "payment": -0.885185897,
+                        "due": -0.657553315,
+                        "tell": -0.632104337,
+                        "me": -0.702332497,
+                        "about": -0.632104337,
+                        "cost": -0.115637206,
+                        "how": -0.268011838,
+                        "do": -0.012322295,
+                        "i": -0.529880106,
+                        "pay": -0.477209538,
+                        "onlin": -0.379274547,
+                        "can": 0.006814614,
+                        "where": -0.192831442,
+                        "portal": -0.192831442,
+                        "process": -0.173021048,
+                        "to": -0.682253778,
+                        "my": 0.240160823,
+                        "instruct": -0.034801204,
+                        "by": -0.222989485,
+                        "give": -0.034801204,
+                        "detail": -0.034801204,
+                        "structur": -0.26540494,
+                        "contact": -0.360880941,
+                        "account": -0.495010912,
+                        "speak": -0.089754947,
+                        "call": -0.357118845,
+                        "sms": -0.359722793,
+                        "whatsapp": -0.357686192,
+                        "via": -0.494419664,
+                        "number": 0.338095725,
+                        "phonenumb": 11.282941818,
+                        "it": 0.650206745,
+                        "you": 0.37376672,
+                        "reach": 0.37376672,
+                        "at": 0.37376672,
+                        "here": -0.057049278,
+                        "are": -0.387430489,
+                        "ani": -0.250620037,
+                        "scholarship": -0.602069318,
+                        "form": -0.351449311,
+                        "cours": -0.851102114,
+                        "offer": -0.136810437,
+                        "list": -0.150676727,
+                        "of": -0.150676727,
+                        "admiss": -0.847809613,
+                        "get": -0.157754615,
+                        "want": -0.150605574,
+                        "take": -0.099879906,
+                        "campus": -1.067756057,
+                        "life": -0.539835632,
+                        "like": -0.847525775,
+                        "on": -0.847525775,
+                        "student": -0.31960544,
+                        "talk": -0.050725676,
+                        "a": -0.050725676,
+                        "human": -0.050725676,
+                        "connect": -0.186204076,
+                        "an": -0.186204076,
+                        "agent": -0.186204076,
+                        "repres": -0.089754947,
+                        "nonefeature": -0.837436378
+                      }
+                    },
+                    "scholarship": {
+                      "bias": -0.082656606,
+                      "weights": {
+                        "hello": -0.125060886,
+                        "hi": -1.190786004,
+                        "there": 1.269817829,
+                        "good": -0.066484399,
+                        "morn": -0.066484399,
+                        "what": -0.43117407,
+                        "is": -0.30452019,
+                        "the": 0.550406396,
+                        "fee": -1.687799335,
+                        "deadlin": -0.103058562,
+                        "when": -0.003632457,
+                        "payment": -0.117404625,
+                        "due": -0.003632457,
+                        "tell": 0.522028208,
+                        "me": 0.176615208,
+                        "about": 0.522028208,
+                        "cost": -0.084057041,
+                        "how": -0.058840841,
+                        "i": -0.069879442,
+                        "pay": -0.160074145,
+                        "onlin": -0.160074145,
+                        "can": -0.026678478,
+                        "where": -0.113772169,
+                        "portal": -0.113772169,
+                        "process": -0.087523825,
+                        "to": -0.298890859,
+                        "for": -0.160074145,
+                        "step": -0.160074145,
+                        "by": -0.019664995,
+                        "show": -0.160074145,
+                        "structur": -0.298440814,
+                        "contact": -0.023224121,
+                        "account": -0.22148639,
+                        "need": -0.011918191,
+                        "speak": -0.043093458,
+                        "depart": -0.011918191,
+                        "call": -0.00234179,
+                        "sms": -0.119245559,
+                        "team": -0.203667283,
+                        "whatsapp": -0.105263002,
+                        "via": -0.001176283,
+                        "phonenumb": -0.039039716,
+                        "you": -0.026678478,
+                        "reach": -0.026678478,
+                        "at": -0.026678478,
+                        "are": 2.216545582,
+                        "ani": 2.460603952,
+                        "scholarship": 6.635914326,
+                        "form": 4.175312519,
+                        "cours": -1.713561177,
+                        "offer": -0.24405852,
+                        "admiss": -0.304845899,
+                        "get": -0.058840841,
+                        "want": -0.057961263,
+                        "take": -0.032503765,
+                        "campus": -0.743983269,
+                        "life": -0.743983269,
+                        "talk": -0.025457496,
+                        "a": -0.025457496,
+                        "human": -0.025457496,
+                        "connect": -0.138995245,
+                        "an": -0.138995245,
+                        "agent": -0.138995245,
+                        "repres": -0.031175265,
+                        "nonefeature": -0.1301869
+                      }
+                    },
+                    "courses": {
+                      "bias": 0.697670872,
+                      "weights": {
+                        "hello": -0.670271039,
+                        "hi": -0.183816105,
+                        "there": -0.574653387,
+                        "good": -0.343173534,
+                        "morn": -0.343173534,
+                        "what": -0.436582476,
+                        "is": -1.07976985,
+                        "the": -0.008288548,
+                        "fee": -2.004991293,
+                        "deadlin": -0.421910614,
+                        "when": -0.018408336,
+                        "payment": -0.26171571,
+                        "due": -0.018408336,
+                        "tell": 0.323014587,
+                        "me": -0.266788036,
+                        "about": 0.323014587,
+                        "cost": -0.402369022,
+                        "how": -0.187608153,
+                        "i": -0.199083954,
+                        "pay": -0.199781284,
+                        "onlin": -0.423922122,
+                        "can": -0.103139505,
+                        "where": -0.019166403,
+                        "portal": -0.019166403,
+                        "process": -0.202826589,
+                        "to": -0.683799386,
+                        "for": -0.174860537,
+                        "step": -0.174860537,
+                        "by": -0.109429404,
+                        "show": -0.174860537,
+                        "structur": -0.263549358,
+                        "contact": -0.198937401,
+                        "account": -0.492222697,
+                        "speak": -0.094734132,
+                        "call": -0.194150507,
+                        "sms": -0.336057901,
+                        "team": -0.208564252,
+                        "whatsapp": -0.334476411,
+                        "via": -0.352540702,
+                        "phonenumb": -0.661377132,
+                        "it": -0.217915699,
+                        "you": -0.078218751,
+                        "reach": -0.078218751,
+                        "at": -0.078218751,
+                        "are": 0.21477519,
+                        "ani": -0.390837342,
+                        "scholarship": -1.161703348,
+                        "form": -0.770865977,
+                        "cours": 11.446032524,
+                        "offer": 0.605612636,
+                        "list": 0.215375528,
+                        "of": 0.215375528,
+                        "admiss": -0.802080035,
+                        "get": -0.187608153,
+                        "want": -0.174163207,
+                        "take": -0.118781209,
+                        "campus": -1.286778092,
+                        "life": -1.131224632,
+                        "like": -0.217915699,
+                        "on": -0.217915699,
+                        "student": -0.062362168,
+                        "talk": -0.05538201,
+                        "a": -0.05538201,
+                        "human": -0.05538201,
+                        "connect": -0.227293998,
+                        "an": -0.227293998,
+                        "agent": -0.227293998,
+                        "repres": -0.094734132,
+                        "nonefeature": -0.674433351
+                      }
+                    },
+                    "admissions": {
+                      "bias": 0.765540767,
+                      "weights": {
+                        "hello": -0.741885722,
+                        "hi": -0.327291071,
+                        "there": -0.429719716,
+                        "good": -0.37748304,
+                        "morn": -0.37748304,
+                        "what": -0.264352053,
+                        "is": -0.357060581,
+                        "the": -0.260110021,
+                        "fee": -1.087641716,
+                        "deadlin": -0.041556042,
+                        "when": -0.084872775,
+                        "payment": -0.682822108,
+                        "due": -0.084872775,
+                        "tell": -0.170375302,
+                        "me": -0.63177526,
+                        "about": -0.170375302,
+                        "cost": -0.045487799,
+                        "how": -0.043188561,
+                        "do": -0.336073428,
+                        "i": -0.240568697,
+                        "pay": -1.313215971,
+                        "onlin": -1.006527662,
+                        "can": -0.046541769,
+                        "where": -0.020676788,
+                        "portal": -0.020676788,
+                        "process": 0.714887083,
+                        "to": -0.66605705,
+                        "my": -0.422173232,
+                        "instruct": -0.461787432,
+                        "for": -0.461787432,
+                        "step": -0.046640046,
+                        "by": -0.046640046,
+                        "contact": -0.202281162,
+                        "account": -0.555724859,
+                        "need": -0.130798861,
+                        "speak": -0.770387709,
+                        "depart": -0.130798861,
+                        "call": -0.201054558,
+                        "sms": -0.260031044,
+                        "team": -0.021590503,
+                        "whatsapp": -0.258831233,
+                        "via": -0.497271627,
+                        "phonenumb": -0.733755946,
+                        "it": -0.164467186,
+                        "are": -0.122697845,
+                        "ani": -0.102428846,
+                        "scholarship": -0.102428846,
+                        "cours": -0.732224762,
+                        "offer": -0.02026899,
+                        "list": -0.119960517,
+                        "of": -0.119960517,
+                        "admiss": 11.227635384,
+                        "get": 1.223485231,
+                        "want": 0.272845417,
+                        "take": 1.151091576,
+                        "campus": -0.572627485,
+                        "life": -0.659118474,
+                        "like": -0.15703924,
+                        "on": -0.15703924,
+                        "student": -0.243530214,
+                        "talk": -0.87824589,
+                        "a": -0.87824589,
+                        "human": -0.87824589,
+                        "connect": -0.461400002,
+                        "an": -0.461400002,
+                        "agent": -0.461400002,
+                        "repres": -0.639588773,
+                        "nonefeature": -0.745619237
+                      }
+                    },
+                    "campus_life": {
+                      "bias": 0.53785293,
+                      "weights": {
+                        "hello": -0.549784064,
+                        "hi": -0.307458192,
+                        "there": -0.314516783,
+                        "good": -0.30466634,
+                        "morn": -0.30466634,
+                        "what": 1.238554478,
+                        "is": -0.079625078,
+                        "the": -1.859683037,
+                        "fee": -1.214155555,
+                        "deadlin": -0.413636208,
+                        "when": -0.330729604,
+                        "payment": -0.428951681,
+                        "due": -0.330729604,
+                        "tell": 0.209963202,
+                        "me": -0.46082446,
+                        "about": 0.209963202,
+                        "cost": -0.277461112,
+                        "how": -0.077731162,
+                        "do": -0.077731162,
+                        "i": -0.35511592,
+                        "pay": -0.140293434,
+                        "onlin": -0.233020186,
+                        "can": -0.108571254,
+                        "process": -0.149647385,
+                        "to": -0.746347964,
+                        "my": -0.148344353,
+                        "instruct": -0.005495369,
+                        "by": -0.266678363,
+                        "give": -0.005495369,
+                        "detail": -0.005495369,
+                        "structur": -0.15848361,
+                        "contact": -0.39773795,
+                        "account": -0.358781368,
+                        "speak": -0.178920448,
+                        "call": -0.227721721,
+                        "sms": -0.313073218,
+                        "whatsapp": -0.274366319,
+                        "via": -0.320761204,
+                        "number": -0.148344353,
+                        "phonenumb": -1.543484211,
+                        "it": 1.090546608,
+                        "you": -0.046008963,
+                        "reach": -0.046008963,
+                        "at": -0.046008963,
+                        "are": -0.517084181,
+                        "ani": -0.007058569,
+                        "scholarship": -0.239075825,
+                        "form": -0.232017249,
+                        "cours": -0.747559786,
+                        "offer": -0.510025561,
+                        "list": -0.01374668,
+                        "of": -0.01374668,
+                        "admiss": -0.538191855,
+                        "want": -0.214822501,
+                        "campus": 4.831168175,
+                        "life": 7.167537212,
+                        "like": 2.439676523,
+                        "on": 2.439676523,
+                        "student": 4.776045799,
+                        "talk": -0.214822501,
+                        "a": -0.214822501,
+                        "human": -0.214822501,
+                        "connect": -0.352605015,
+                        "an": -0.352605015,
+                        "agent": -0.352605015,
+                        "repres": -0.178920448,
+                        "nonefeature": -0.554026484
+                      }
+                    },
+                    "handoff": {
+                      "bias": 0.312559784,
+                      "weights": {
+                        "hello": -0.334080189,
+                        "hi": -0.239460856,
+                        "there": -0.262114763,
+                        "good": -0.230161637,
+                        "morn": -0.230161637,
+                        "what": -0.431245387,
+                        "is": -0.295045137,
+                        "the": -1.948135614,
+                        "fee": -1.624226213,
+                        "deadlin": -0.121028647,
+                        "when": -0.137365744,
+                        "payment": -0.263820976,
+                        "due": -0.137365744,
+                        "tell": -0.461446196,
+                        "me": 0.982760966,
+                        "about": -0.461446196,
+                        "cost": -0.036650777,
+                        "how": -1.743361354,
+                        "do": -0.378733337,
+                        "i": -1.140583277,
+                        "pay": -1.879662633,
+                        "onlin": -0.648266077,
+                        "can": -0.374381632,
+                        "process": -0.018498305,
+                        "to": 4.217700481,
+                        "my": -0.52636385,
+                        "instruct": -0.557921886,
+                        "for": -0.50126636,
+                        "step": -0.378301293,
+                        "by": -0.639293611,
+                        "give": -0.056655511,
+                        "detail": -0.056655511,
+                        "have": -0.273565948,
+                        "contact": -0.582753897,
+                        "account": -1.574636459,
+                        "need": -1.540643096,
+                        "speak": 3.214427233,
+                        "depart": -1.540643096,
+                        "sms": -0.347400039,
+                        "whatsapp": -0.277264953,
+                        "via": -0.075904489,
+                        "phonenumb": -0.320521176,
+                        "you": -0.279383808,
+                        "reach": -0.279383808,
+                        "at": -0.279383808,
+                        "are": -0.022653952,
+                        "ani": -0.022653952,
+                        "scholarship": -0.022653952,
+                        "cours": -0.311438829,
+                        "list": -0.065668859,
+                        "of": -0.065668859,
+                        "admiss": -2.391762733,
+                        "get": -0.520030499,
+                        "want": 0.873790622,
+                        "take": -1.871733546,
+                        "campus": -0.211633205,
+                        "life": -0.263182521,
+                        "student": -0.051549315,
+                        "talk": 2.745523453,
+                        "a": 2.745523453,
+                        "human": 2.745523453,
+                        "connect": 2.329007387,
+                        "an": 2.329007387,
+                        "agent": 2.329007387,
+                        "repres": 4.755073071,
+                        "nonefeature": -0.340947568
+                      }
+                    },
+                    "None": {
+                      "bias": 1.052542668,
+                      "weights": {
+                        "hello": -1.037576914,
+                        "hi": -0.46317938,
+                        "there": -0.588893056,
+                        "good": -0.525726855,
+                        "morn": -0.525726855,
+                        "what": -0.208872512,
+                        "is": -0.391763031,
+                        "the": -0.370185137,
+                        "fee": -0.654567122,
+                        "deadlin": -0.065076306,
+                        "when": -0.108657651,
+                        "payment": -0.519365251,
+                        "due": -0.108657651,
+                        "tell": -0.092885844,
+                        "me": -0.295266777,
+                        "about": -0.092885844,
+                        "cost": -0.087261572,
+                        "how": -0.176290512,
+                        "do": -0.065716252,
+                        "i": -0.225190222,
+                        "pay": -0.243275583,
+                        "onlin": -0.531951249,
+                        "can": -0.118891947,
+                        "where": -0.014203541,
+                        "portal": -0.014203541,
+                        "process": -0.234681264,
+                        "to": -0.524087429,
+                        "my": -0.064996243,
+                        "instruct": -0.085112914,
+                        "for": -0.074114256,
+                        "by": -0.077414922,
+                        "give": -0.01099866,
+                        "detail": -0.01099866,
+                        "structur": -0.396581858,
+                        "explain": -0.075467117,
+                        "contact": -0.366885871,
+                        "account": -0.687929869,
+                        "need": -0.003293949,
+                        "speak": -0.262257934,
+                        "depart": -0.003293949,
+                        "call": -0.36316815,
+                        "sms": -0.388044626,
+                        "team": -0.031997025,
+                        "whatsapp": -0.386201143,
+                        "via": -0.664833605,
+                        "number": -0.042280752,
+                        "phonenumb": -1.029014945,
+                        "it": -0.074283376,
+                        "you": -0.038162317,
+                        "reach": -0.038162317,
+                        "at": -0.038162317,
+                        "are": -0.173018113,
+                        "ani": -0.125713289,
+                        "scholarship": -0.162375033,
+                        "form": -0.036661804,
+                        "cours": -1.025724173,
+                        "offer": -0.047304899,
+                        "list": -0.148402199,
+                        "of": -0.148402199,
+                        "admiss": -1.022490501,
+                        "get": -0.013744527,
+                        "want": -0.075450607,
+                        "take": -0.001381458,
+                        "campus": -0.353480637,
+                        "life": -0.694045544,
+                        "like": -0.009229817,
+                        "on": -0.009229817,
+                        "student": -0.349794686,
+                        "talk": -0.07406915,
+                        "a": -0.07406915,
+                        "human": -0.07406915,
+                        "connect": -0.07580477,
+                        "an": -0.07580477,
+                        "agent": -0.07580477,
+                        "repres": -0.258964002,
+                        "nonefeature": 11.350988388
+                      }
+                    }
+                  }
+                ],
+                "trainOpts": {
+                  "iterations": 20000,
+                  "errorThresh": 0.00005,
+                  "fixedError": false,
+                  "deltaErrorThresh": 0.000001,
+                  "learningRate": 0.7,
+                  "momentum": 0.5,
+                  "leakyReluAlpha": 0.08,
+                  "maxDecimals": 9,
+                  "log": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "hi": {
+        "settings": {
+          "language": "hi",
+          "useNoneFeature": false,
+          "config": {
+            "activation": "leaky-relu",
+            "hiddenLayers": [],
+            "iterations": 20000,
+            "learningRate": 0.7,
+            "errorThresh": 0.00005,
+            "momentum": 0.5,
+            "deltaErrorThresh": 0.000001,
+            "maxDecimals": 9,
+            "leakyReluAlpha": 0.08,
+            "timeout": 120000
+          }
+        },
+        "language": "hi",
+        "nluClassName": "BrainNLU",
+        "useMasterDomain": true,
+        "trainByDomain": false,
+        "keepStopwords": true,
+        "stemDict": {
+          "": {
+            "domain": "default",
+            "intent": "handoff"
+          }
+        },
+        "intentDict": {
+          "greeting": "default",
+          "fee_inquiry": "default",
+          "pay_online": "default",
+          "pay_online_instructions": "default",
+          "fee_structure": "default",
+          "contact_accounts": "default",
+          "contact_via_sms": "default",
+          "contact_via_whatsapp": "default",
+          "provide_contact_number": "default",
+          "scholarship": "default",
+          "courses": "default",
+          "admissions": "default",
+          "campus_life": "default",
+          "handoff": "default"
+        },
+        "useStemDict": true,
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "language": "hi",
+              "useNoneFeature": false,
+              "config": {
+                "activation": "leaky-relu",
+                "hiddenLayers": [],
+                "iterations": 20000,
+                "learningRate": 0.7,
+                "errorThresh": 0.00005,
+                "momentum": 0.5,
+                "deltaErrorThresh": 0.000001,
+                "maxDecimals": 9,
+                "leakyReluAlpha": 0.08,
+                "timeout": 120000
+              }
+            },
+            "language": "hi",
+            "keepStopwords": true,
+            "docs": [
+              {
+                "intent": "handoff",
+                "tokens": [
+                  ""
+                ]
+              }
+            ],
+            "features": {
+              "": 1
+            },
+            "isEditing": false,
+            "className": "BrainNLU",
+            "classifier": {
+              "className": "BrainClassifier",
+              "settings": {
+                "language": "hi",
+                "useNoneFeature": false,
+                "config": {
+                  "activation": "leaky-relu",
+                  "hiddenLayers": [],
+                  "iterations": 20000,
+                  "learningRate": 0.7,
+                  "errorThresh": 0.00005,
+                  "momentum": 0.5,
+                  "deltaErrorThresh": 0.000001,
+                  "maxDecimals": 9,
+                  "leakyReluAlpha": 0.08,
+                  "timeout": 120000
+                }
+              },
+              "labels": [],
+              "network": {
+                "sizes": [
+                  1,
+                  1
+                ],
+                "layers": [
+                  {
+                    "": {}
+                  },
+                  {
+                    "handoff": {
+                      "bias": 4.150278709,
+                      "weights": {
+                        "": 8.289545059
+                      }
+                    }
+                  }
+                ],
+                "trainOpts": {
+                  "iterations": 20000,
+                  "errorThresh": 0.00005,
+                  "fixedError": false,
+                  "deltaErrorThresh": 0.000001,
+                  "learningRate": 0.7,
+                  "momentum": 0.5,
+                  "leakyReluAlpha": 0.08,
+                  "maxDecimals": 9,
+                  "log": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "extraSentences": [
+      [
+        "en",
+        "hello"
+      ],
+      [
+        "en",
+        "hi there"
+      ],
+      [
+        "en",
+        "good morning"
+      ],
+      [
+        "hi",
+        "नमस्ते"
+      ],
+      [
+        "hi",
+        "नमस्कार"
+      ],
+      [
+        "hi",
+        "सुप्रभात"
+      ],
+      [
+        "en",
+        "what is the fee deadline"
+      ],
+      [
+        "en",
+        "when is payment due"
+      ],
+      [
+        "en",
+        "tell me about the fees"
+      ],
+      [
+        "en",
+        "what is the cost"
+      ],
+      [
+        "hi",
+        "फीस की अंतिम तिथि क्या है"
+      ],
+      [
+        "hi",
+        "भुगतान कब करना है"
+      ],
+      [
+        "hi",
+        "फीस के बारे में बताएं"
+      ],
+      [
+        "hi",
+        "कितना खर्चा है"
+      ],
+      [
+        "en",
+        "how do I pay online"
+      ],
+      [
+        "en",
+        "can I pay online"
+      ],
+      [
+        "en",
+        "where is the payment portal"
+      ],
+      [
+        "en",
+        "online fee payment process"
+      ],
+      [
+        "en",
+        "how to pay my fees"
+      ],
+      [
+        "en",
+        "online payment"
+      ],
+      [
+        "hi",
+        "मैं ऑनलाइन भुगतान कैसे करूं"
+      ],
+      [
+        "hi",
+        "क्या मैं ऑनलाइन भुगतान कर सकता हूं"
+      ],
+      [
+        "hi",
+        "पेमेंट पोर्टल कहां है"
+      ],
+      [
+        "hi",
+        "ऑनलाइन भुगतान"
+      ],
+      [
+        "en",
+        "Instructions for how to pay"
+      ],
+      [
+        "en",
+        "how to pay fee online step by step"
+      ],
+      [
+        "en",
+        "give me detailed fee payment instructions"
+      ],
+      [
+        "en",
+        "steps to pay fees online"
+      ],
+      [
+        "en",
+        "show me the steps for paying online"
+      ],
+      [
+        "hi",
+        "भुगतान कैसे करें के लिए निर्देश"
+      ],
+      [
+        "hi",
+        "ऑनलाइन शुल्क भुगतान कैसे करें"
+      ],
+      [
+        "hi",
+        "ऑनलाइन भुगतान करने के चरण"
+      ],
+      [
+        "en",
+        "Fee structure"
+      ],
+      [
+        "en",
+        "what is the fee structure"
+      ],
+      [
+        "en",
+        "tell me about the fee structure"
+      ],
+      [
+        "en",
+        "explain the fees"
+      ],
+      [
+        "en",
+        "what fees do I have to pay"
+      ],
+      [
+        "hi",
+        "शुल्क संरचना"
+      ],
+      [
+        "hi",
+        "शुल्क संरचना क्या है"
+      ],
+      [
+        "hi",
+        "फीस के बारे में बताएं"
+      ],
+      [
+        "hi",
+        "मुझे कौन सी फीस देनी होगी"
+      ],
+      [
+        "en",
+        "Contact accounts"
+      ],
+      [
+        "en",
+        "I need to speak to the accounts department"
+      ],
+      [
+        "en",
+        "call accounts"
+      ],
+      [
+        "en",
+        "sms the accounts team"
+      ],
+      [
+        "en",
+        "whatsapp the account team"
+      ],
+      [
+        "hi",
+        "लेखा विभाग से संपर्क करें"
+      ],
+      [
+        "hi",
+        "मुझे लेखा विभाग से बात करनी है"
+      ],
+      [
+        "hi",
+        "अकाउंट्स को कॉल करें"
+      ],
+      [
+        "en",
+        "Via SMS"
+      ],
+      [
+        "en",
+        "contact me by sms"
+      ],
+      [
+        "hi",
+        "एसएमएस द्वारा"
+      ],
+      [
+        "hi",
+        "मुझे एसएमएस से संपर्क करें"
+      ],
+      [
+        "en",
+        "Via WhatsApp"
+      ],
+      [
+        "en",
+        "contact me by whatsapp"
+      ],
+      [
+        "hi",
+        "व्हाट्सएप द्वारा"
+      ],
+      [
+        "hi",
+        "मुझे व्हाट्सएप से संपर्क करें"
+      ],
+      [
+        "en",
+        "my number is %phonenumber%"
+      ],
+      [
+        "en",
+        "it is %phonenumber%"
+      ],
+      [
+        "en",
+        "you can reach me at %phonenumber%"
+      ],
+      [
+        "en",
+        "%phonenumber%"
+      ],
+      [
+        "en",
+        "here is my number %phonenumber%"
+      ],
+      [
+        "hi",
+        "मेरा नंबर %phonenumber% है"
+      ],
+      [
+        "hi",
+        "यह है %phonenumber%"
+      ],
+      [
+        "hi",
+        "%phonenumber%"
+      ],
+      [
+        "en",
+        "are there any scholarships"
+      ],
+      [
+        "en",
+        "tell me about the scholarship form"
+      ],
+      [
+        "hi",
+        "क्या कोई छात्रवृत्ति है"
+      ],
+      [
+        "hi",
+        "छात्रवृत्ति फॉर्म के बारे में बताएं"
+      ],
+      [
+        "en",
+        "Courses"
+      ],
+      [
+        "en",
+        "tell me about the courses"
+      ],
+      [
+        "en",
+        "what courses are offered"
+      ],
+      [
+        "en",
+        "list of courses"
+      ],
+      [
+        "hi",
+        "कोर्स"
+      ],
+      [
+        "hi",
+        "कोर्स के बारे में बताएं"
+      ],
+      [
+        "hi",
+        "कौन से कोर्स उपलब्ध हैं"
+      ],
+      [
+        "hi",
+        "कोर्स की सूची"
+      ],
+      [
+        "en",
+        "Admissions"
+      ],
+      [
+        "en",
+        "how to get admission"
+      ],
+      [
+        "en",
+        "admission process"
+      ],
+      [
+        "en",
+        "I want to take admission"
+      ],
+      [
+        "hi",
+        "प्रवेश"
+      ],
+      [
+        "hi",
+        "प्रवेश कैसे लें"
+      ],
+      [
+        "hi",
+        "प्रवेश प्रक्रिया"
+      ],
+      [
+        "hi",
+        "मुझे प्रवेश लेना है"
+      ],
+      [
+        "en",
+        "Campus Life"
+      ],
+      [
+        "en",
+        "tell me about campus life"
+      ],
+      [
+        "en",
+        "what is it like on campus"
+      ],
+      [
+        "en",
+        "student life"
+      ],
+      [
+        "hi",
+        "कैंपस जीवन"
+      ],
+      [
+        "hi",
+        "कैंपस जीवन के बारे में बताएं"
+      ],
+      [
+        "hi",
+        "कैंपस में कैसा है"
+      ],
+      [
+        "hi",
+        "छात्र जीवन"
+      ],
+      [
+        "en",
+        "I want to talk to a human"
+      ],
+      [
+        "en",
+        "connect me to an agent"
+      ],
+      [
+        "en",
+        "speak to representative"
+      ],
+      [
+        "hi",
+        "मुझे एक इंसान से बात करनी है"
+      ],
+      [
+        "hi",
+        "मुझे एक एजेंट से कनेक्ट करें"
+      ],
+      [
+        "hi",
+        "प्रतिनिधि से बात करें"
+      ]
+    ]
+  },
+  "nerManager": {
+    "settings": {},
+    "threshold": 0.8,
+    "builtins": [
+      "Number",
+      "Ordinal",
+      "Percentage",
+      "Age",
+      "Currency",
+      "Dimension",
+      "Temperature",
+      "DateTime",
+      "PhoneNumber",
+      "IpAddress",
+      "Boolean",
+      "Email",
+      "Hashtag",
+      "URL"
+    ],
+    "namedEntities": {}
+  },
+  "slotManager": {},
+  "responses": {},
+  "actions": {},
+  "utteranceDict": {
+    "?": "help"
+  }
+}

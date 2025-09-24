@@ -14,5 +14,5 @@ Current Features :
 
 7. Hindi Chatbot Activated ✅
 
-8. Fixing the UI 
+8. Fixing the UI of the chatbot ✅ 
 

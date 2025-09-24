@@ -12,53 +12,13 @@ export default function ChatHeader() {
           </svg>
         </div>
         <div className="ml-3">
-          <div className="text-base font-semibold">Support Bot</div>
+          <div className="text-lg font-semibold">Campus Bot</div>
           <div className="text-xs text-green-200 flex items-center">
             <span className="w-2 h-2 bg-green-400 rounded-full mr-1"></span>Online
           </div>
         </div>
       </div>
-      <div className="flex items-center space-x-4">
-        <LanguageSwitcher />
-        <div className="flex space-x-2">
-  {/* Minimize Button */}
-  <button
-    className="w-8 h-8 flex items-center justify-center rounded-full bg-white bg-opacity-20 hover:bg-white hover:bg-opacity-40 text-white transition duration-200 shadow-md"
-    title="Minimize"
-    onClick={() => console.log("Minimize clicked")}
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-4 w-4"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={2}
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M20 12H4" />
-    </svg>
-  </button>
-
-  {/* Close Button */}
-  <button
-    className="w-8 h-8 flex items-center justify-center rounded-full bg-white bg-opacity-20 hover:bg-red-500 text-white transition duration-200 shadow-md"
-    title="Close"
-    onClick={() => console.log("Close clicked")}
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-4 w-4"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={2}
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-    </svg>
-  </button>
-        </div>
-</div>
-
+      <LanguageSwitcher />
     </div>
   );
 }

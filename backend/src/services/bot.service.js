@@ -6,7 +6,7 @@ const twilio = require('twilio');
 const manager = new NlpManager({ languages: ['en', 'hi'], forceNER: true });
 
 // Confidence threshold for NLP intent matching
-const NLP_CONFIDENCE_THRESHOLD = 0.7;
+const NLP_CONFIDENCE_THRESHOLD = 0.6;
 
 // --- 1. DEFINE INTENTS AND RESPONSES ---
 const responses = {
@@ -191,10 +191,13 @@ async function trainNlp() {
   manager.addDocument('en', 'online fee payment process', 'pay_online');
   manager.addDocument('en', 'how to pay my fees', 'pay_online');
   manager.addDocument('en', 'online payment', 'pay_online');
+  manager.addDocument('en', 'fee payment link', 'pay_online');
   manager.addDocument('hi', 'मैं ऑनलाइन भुगतान कैसे करूं', 'pay_online');
   manager.addDocument('hi', 'क्या मैं ऑनलाइन भुगतान कर सकता हूं', 'pay_online');
   manager.addDocument('hi', 'पेमेंट पोर्टल कहां है', 'pay_online');
   manager.addDocument('hi', 'ऑनलाइन भुगतान', 'pay_online');
+  manager.addDocument('hi', 'ऑनलाइन फीस कैसे भरें', 'pay_online');
+  manager.addDocument('hi', 'ऑनलाइन भुगतान प्रक्रिया', 'pay_online');
 
   // PAY ONLINE INSTRUCTIONS
   manager.addDocument('en', 'Instructions for how to pay', 'pay_online_instructions');
@@ -205,6 +208,7 @@ async function trainNlp() {
   manager.addDocument('hi', 'भुगतान कैसे करें के लिए निर्देश', 'pay_online_instructions');
   manager.addDocument('hi', 'ऑनलाइन शुल्क भुगतान कैसे करें', 'pay_online_instructions');
   manager.addDocument('hi', 'ऑनलाइन भुगतान करने के चरण', 'pay_online_instructions');
+  manager.addDocument('hi', 'ऑनलाइन फीस भरने के निर्देश दें', 'pay_online_instructions');
 
   // FEE STRUCTURE
   manager.addDocument('en', 'Fee structure', 'fee_structure');
@@ -216,6 +220,7 @@ async function trainNlp() {
   manager.addDocument('hi', 'शुल्क संरचना क्या है', 'fee_structure');
   manager.addDocument('hi', 'फीस के बारे में बताएं', 'fee_structure');
   manager.addDocument('hi', 'मुझे कौन सी फीस देनी होगी', 'fee_structure');
+  manager.addDocument('hi', 'फीस का विवरण दें', 'fee_structure');
 
   // CONTACT ACCOUNTS
   manager.addDocument('en', 'Contact accounts', 'contact_accounts');
@@ -226,6 +231,7 @@ async function trainNlp() {
   manager.addDocument('hi', 'लेखा विभाग से संपर्क करें', 'contact_accounts');
   manager.addDocument('hi', 'मुझे लेखा विभाग से बात करनी है', 'contact_accounts');
   manager.addDocument('hi', 'अकाउंट्स को कॉल करें', 'contact_accounts');
+  manager.addDocument('hi', 'अकाउंट्स टीम से संपर्क करना है', 'contact_accounts');
 
   // CONTACT VIA...
   manager.addDocument('en', 'Via SMS', 'contact_via_sms');
@@ -246,6 +252,8 @@ async function trainNlp() {
   manager.addDocument('hi', 'मेरा नंबर %phonenumber% है', 'provide_contact_number');
   manager.addDocument('hi', 'यह है %phonenumber%', 'provide_contact_number');
   manager.addDocument('hi', '%phonenumber%', 'provide_contact_number');
+  manager.addDocument('hi', 'मेरा फोन नंबर %phonenumber% है', 'provide_contact_number');
+  manager.addDocument('hi', 'आप मुझे %phonenumber% पर संपर्क कर सकते हैं', 'provide_contact_number');
 
   // SCHOLARSHIP
   manager.addDocument('en', 'are there any scholarships', 'scholarship');
@@ -290,6 +298,7 @@ async function trainNlp() {
   manager.addDocument('hi', 'मुझे एक इंसान से बात करनी है', 'handoff');
   manager.addDocument('hi', 'मुझे एक एजेंट से कनेक्ट करें', 'handoff');
   manager.addDocument('hi', 'प्रतिनिधि से बात करें', 'handoff');
+  manager.addDocument('hi', 'एजेंट से बात करें', 'handoff');
 
   // Train the model
   await manager.train();
@@ -405,87 +414,63 @@ async function getBotResponse(message, language = "en", history = []) {
 
   console.log(`NLP Result: Intent='${intent}', Score=${score}`);
 
-  // --- Live Agent Handoff Check ---
-  if (intent === 'handoff' && score > NLP_CONFIDENCE_THRESHOLD) {
-    // Asynchronously send the notification email without waiting for it.
-    // The user gets an immediate response.
-    notifyLiveAgent(message, history).catch(console.error);
+  // Check if the top intent has enough confidence
+  if (intent && score > NLP_CONFIDENCE_THRESHOLD && langResponses[intent]) {
+    // Handle special intents with custom logic
+    switch (intent) {
+      case 'provide_contact_number': {
+        const phoneEntity = entities.find(e => e.entity === 'phonenumber');
+        if (phoneEntity) {
+          const studentPhoneNumber = phoneEntity.sourceText;
+          const lastBotMessage = history.filter(m => m.sender === 'bot').pop();
+          let notificationSent = false;
 
-    const matchedIntent = langResponses.handoff;
-    return {
-      response: matchedIntent.response,
-      quickReplies: matchedIntent.quickReplies || []
-    };
-  }
+          if (lastBotMessage && lastBotMessage.text.toLowerCase().includes('whatsapp')) {
+            notificationSent = await sendWhatsAppToAccounts(studentPhoneNumber);
+          } else {
+            notificationSent = await sendSmsToAccounts(studentPhoneNumber);
+          }
 
-  // --- Provide Contact Number Check ---
-  if (intent === 'provide_contact_number' && score > NLP_CONFIDENCE_THRESHOLD) {
-    const phoneEntity = entities.find(e => e.entity === 'phonenumber');
-    if (phoneEntity) {
-      const studentPhoneNumber = phoneEntity.sourceText;
+          if (!notificationSent) {
+            return {
+              response: "I'm sorry, I couldn't send the notification at the moment. Please try again later or ask to speak to a human agent.",
+              quickReplies: ["Speak to an agent", "Fee structure"]
+            };
+          }
 
-      // Check last bot message to decide which channel to use
-      const lastBotMessage = history.filter(m => m.sender === 'bot').pop();
-      let notificationSent = false;
-
-      if (lastBotMessage && lastBotMessage.text.toLowerCase().includes('whatsapp')) {
-        notificationSent = await sendWhatsAppToAccounts(studentPhoneNumber);
-      } else {
-        // Default to SMS if it's not explicitly WhatsApp
-        notificationSent = await sendSmsToAccounts(studentPhoneNumber);
-      }
-
-      const matchedIntent = langResponses.provide_contact_number;
-
-      if (!notificationSent) {
-        return {
-          response: "I'm sorry, I couldn't send the notification at the moment. Please try again later or ask to speak to a human agent.",
-          quickReplies: ["Speak to an agent", "Fee structure"]
+          const matchedIntent = langResponses.provide_contact_number;
+          return {
+            response: matchedIntent.response,
+            quickReplies: matchedIntent.quickReplies || []
+          };
+        } else {
+          return {
+            response: "I'm sorry, I couldn't recognize a phone number. Please provide a valid phone number.",
+            quickReplies: []
+          };
         }
       }
-
-      return {
-        response: matchedIntent.response,
-        quickReplies: matchedIntent.quickReplies || []
-      };
-    } else {
-      // If the intent was matched but no number was found, ask again.
-      return {
-        response: "I'm sorry, I couldn't recognize a phone number. Please provide a valid phone number.",
-        quickReplies: []
-      };
+      case 'handoff': {
+        notifyLiveAgent(message, history).catch(console.error);
+        const matchedIntent = langResponses.handoff;
+        return {
+          response: matchedIntent.response,
+          quickReplies: matchedIntent.quickReplies || []
+        };
+      }
+      // For all other standard intents, return the predefined response
+      default: {
+        const matchedIntent = langResponses[intent];
+        return {
+          response: matchedIntent.response,
+          quickReplies: matchedIntent.quickReplies || []
+        };
+      }
     }
   }
 
-  if (intent === 'contact_via_sms' && score > NLP_CONFIDENCE_THRESHOLD) {
-    const matchedIntent = langResponses.contact_via_sms;
-    return {
-      response: matchedIntent.response,
-      quickReplies: matchedIntent.quickReplies || []
-    };
-  }
-
-  if (intent === 'contact_via_whatsapp' && score > NLP_CONFIDENCE_THRESHOLD) {
-    const matchedIntent = langResponses.contact_via_whatsapp;
-    return {
-      response: matchedIntent.response,
-      quickReplies: matchedIntent.quickReplies || []
-    };
-  }
-
-  // --- Contact Accounts Check ---
-  if (intent === 'contact_accounts' && score > NLP_CONFIDENCE_THRESHOLD) {
-    const matchedIntent = langResponses.contact_accounts;
-    return {
-      response: matchedIntent.response,
-      quickReplies: matchedIntent.quickReplies || []
-    };
-  }
-
-  // Use the detected intent if confidence is high, otherwise use fallback
-  const matchedIntent = (intent && score > NLP_CONFIDENCE_THRESHOLD && langResponses[intent])
-    ? langResponses[intent]
-    : langResponses.fallback;
+  // If no intent reached the confidence threshold, use the fallback
+  const matchedIntent = langResponses.fallback;
 
   return {
     response: matchedIntent.response,

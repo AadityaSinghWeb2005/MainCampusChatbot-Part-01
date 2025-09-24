@@ -12,3 +12,7 @@ Current Features :
 
 6. Adding features : like talk to a human agent , Improvising UI , Trying to Implement MCP By Arjun 
 
+7. Hindi Chatbot Activated ✅
+
+8. Fixing the UI 
+

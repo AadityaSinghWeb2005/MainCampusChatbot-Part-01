@@ -16,3 +16,11 @@ Current Features :
 
 8. Fixing the UI of the chatbot ✅ 
 
+9. Document Submission Feature 
+
+10. Assistant : { help to find books , help to find fines for the student , Opening Hours } 
+
+11. Campus event calendar 
+
+12. Proactive notifications 
+

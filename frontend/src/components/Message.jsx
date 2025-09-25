@@ -2,7 +2,7 @@ import React from 'react';
 import { BotIcon, UserIcon } from './icons';
 
 export default function Message({ message }) {
-  const { text, sender, timestamp } = message;
+  const { text, sender, timestamp, fileUrl } = message;
   const isBot = sender === 'bot';
 
   const formatTime = (date) => {
@@ -21,6 +21,16 @@ export default function Message({ message }) {
       )}
       <div className={`max-w-xs md:max-w-md lg:max-w-lg px-4 py-2 rounded-2xl ${isBot ? 'bg-gray-100 text-gray-800 rounded-bl-none' : 'bg-blue-500 text-white rounded-br-none'}`}>
         <p className="text-sm">{text}</p>
+        {fileUrl && isBot && (
+          <a
+            href={fileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-block bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-600 transition-colors text-sm"
+          >
+            Download PDF
+          </a>
+        )}
         <div className={`text-xs mt-1 text-right ${isBot ? 'text-gray-500' : 'text-blue-200'}`}>
           {formatTime(timestamp)}
         </div>

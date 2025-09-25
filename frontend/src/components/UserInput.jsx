@@ -14,7 +14,6 @@ export default function UserInput() {
 
   return (
     <div className="p-4 border-t border-gray-200 flex items-center relative">
-      <button className="mr-2 text-2xl" title="Add emoji">😊</button>
       <input
         type="text"
         value={text}

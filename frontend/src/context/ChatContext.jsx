@@ -4,13 +4,13 @@ import { sendChatRequest } from "../services/api.jsx";
 export const ChatContext = createContext();
 
 const welcomeMessages = {
-  en: "Hello! I'm the CampusBot. How can I help you with admissions, courses, or campus life today?",
-  hi: "नमस्ते! मैं कैंपस-बॉट हूँ। मैं आज प्रवेश, पाठ्यक्रम, या कैंपस जीवन में आपकी कैसे मदद कर सकता हूँ?",
+  en: "Hello! How can I assist you today?",
+  hi: "नमस्ते! मैं आज आपकी कैसे सहायता कर सकता हूँ?",
 };
 
 const quickRepliesByLang = {
-  en: ['Admissions', 'Courses', 'Campus Life'],
-  hi: ['प्रवेश', 'कोर्स', 'कैंपस जीवन'],
+  en: ["Fee deadline", "Scholarships", "Campus events", "Opening hours", "Instructions for how to pay"],
+  hi: ["शुल्क की अंतिम तिथि", "छात्रवृत्तियाँ", "कैंपस कार्यक्रम", "खुलने का समय", "भुगतान कैसे करें के लिए निर्देश"],
 };
 
 export const ChatProvider = ({ children }) => {
@@ -42,7 +42,7 @@ export const ChatProvider = ({ children }) => {
     // We'll time the API request and calculate a dynamic delay
     // to make the bot's typing feel more natural.
     const startTime = Date.now();
-    const { response, quickReplies: newQuickReplies } = await sendChatRequest(
+    const { response, quickReplies: newQuickReplies, fileUrl } = await sendChatRequest(
       userMessage,
       currentLang,
       updatedMessages // Pass the most up-to-date history
@@ -57,7 +57,7 @@ export const ChatProvider = ({ children }) => {
       await new Promise(resolve => setTimeout(resolve, typingDelay - apiDuration));
     }
 
-    addMessage({ text: response, sender: "bot" });
+    addMessage({ text: response, sender: "bot", fileUrl: fileUrl });
     setQuickReplies(newQuickReplies || []);
     setTyping(false);
   };

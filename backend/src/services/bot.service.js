@@ -1,12 +1,8 @@
 const { NlpManager } = require('node-nlp');
-const nodemailer = require('nodemailer');
-const twilio = require('twilio');
-// const env = require('dotenv').config();
 
 const manager = new NlpManager({ languages: ['en', 'hi'], forceNER: true });
-
 // Confidence threshold for NLP intent matching
-const NLP_CONFIDENCE_THRESHOLD = 0.6;
+const NLP_CONFIDENCE_THRESHOLD = 0.5;
 
 // --- 1. DEFINE INTENTS AND RESPONSES ---
 const responses = {
@@ -41,24 +37,12 @@ const responses = {
       quickReplies: ["How to pay online?", "Scholarships", "Contact accounts"]
     },
     contact_accounts: {
-      response: "I can ask the accounts team to contact you. How should they get in touch?",
-      quickReplies: ["Via SMS", "Via WhatsApp"]
-    },
-    contact_via_sms: {
-      response: "Okay, I'll ask them to contact you via SMS. What is your phone number?",
-      quickReplies: []
-    },
-    contact_via_whatsapp: {
-      response: "Okay, I'll ask them to contact you via WhatsApp. What is your phone number?",
-      quickReplies: []
-    },
-    provide_contact_number: {
-      response: "Thank you. I've notified the accounts team with your number. They will contact you shortly.",
-      quickReplies: ["Fee structure", "How to pay online?"]
+      response: "Please contact the accounts department at +1234567891.",
+      quickReplies: ["Fee structure", "How to pay online?", "Scholarships"]
     },
     scholarship: {
-      response: "You can download the scholarship form from the college website under 'Student Services'.",
-      quickReplies: ["Download form", "Eligibility criteria"]
+      response: "For all scholarship details, please visit the official VGU website: https://www.vgu.ac.in/. For specific questions, we recommend contacting the admissions office directly.",
+      quickReplies: ["Admissions", "Courses", "Fee structure"]
     },
     courses: {
       response: "For information on courses, please visit the college's official page: https://www.vgu.ac.in/",
@@ -72,17 +56,26 @@ const responses = {
       response: "For details about campus life, including events, clubs, and facilities, please visit the official VGU Jaipur website: https://www.vgu.ac.in/",
       quickReplies: ["Admissions", "Courses", "Fee deadline"]
     },
+    campus_events: {
+      response: "Here is the schedule for upcoming campus events. Please click the link to download the PDF.",
+      fileUrl: "http://localhost:5000/public/files/campus_events.pdf",
+      quickReplies: ["Fee deadline", "Scholarships", "Opening hours"]
+    },
     greeting: {
       response: "Hello! How can I assist you today?",
-      quickReplies: ["Fee deadline", "Scholarships", "Campus life"]
-    },
-    handoff: {
-      response: "I'm connecting you to a live agent. Please wait a moment.",
-      quickReplies: []
+      quickReplies: ["Fee deadline", "Scholarships", "Campus events", "Opening hours"]
     },
     fallback: {
-      response: "Sorry, I could not process that. Please try rephrasing, or ask to speak to a human agent.",
-      quickReplies: ["Admissions", "Courses", "Speak to an agent"]
+      response: "I'm sorry, I'm not sure how to help with that. Please try rephrasing your question, or you can select one of these options:",
+      quickReplies: ["Fee deadline", "Admissions", "Courses"]
+    },
+    opening_hours: {
+      response: "The college is open from 9:00 A.M. to 6:00 P.M. on weekdays.",
+      quickReplies: ["Fee deadline", "Admissions", "Courses", "Instructions for how to pay"]
+    },
+    submission_complete: {
+      response: "I have sent it to the department successfully.",
+      quickReplies: ["Fee deadline", "Scholarships", "Campus life"]
     }
   },
   hi: {
@@ -116,24 +109,12 @@ const responses = {
       quickReplies: ["ऑनलाइन भुगतान कैसे करें?", "छात्रवृत्तियाँ", "लेखा विभाग से संपर्क करें"]
     },
     contact_accounts: {
-      response: "मैं लेखा टीम से आपसे संपर्क करने के लिए कह सकता हूँ। वे आपसे कैसे संपर्क करें?",
-      quickReplies: ["एसएमएस द्वारा", "व्हाट्सएप द्वारा"]
-    },
-    contact_via_sms: {
-      response: "ठीक है, मैं उनसे एसएमएस के माध्यम से आपसे संपर्क करने के लिए कहूंगा। आपका फ़ोन नंबर क्या है?",
-      quickReplies: []
-    },
-    contact_via_whatsapp: {
-      response: "ठीक है, मैं उनसे व्हाट्सएप के माध्यम से आपसे संपर्क करने के लिए कहूंगा। आपका फ़ोन नंबर क्या है?",
-      quickReplies: []
-    },
-    provide_contact_number: {
-      response: "धन्यवाद। मैंने लेखा टीम को आपके नंबर के साथ सूचित कर दिया है। वे जल्द ही आपसे संपर्क करेंगे।",
-      quickReplies: ["शुल्क संरचना", "ऑनलाइन भुगतान कैसे करें?"]
+      response: "कृपया लेखा विभाग से +1234567891 पर संपर्क करें।",
+      quickReplies: ["शुल्क संरचना", "ऑनलाइन भुगतान कैसे करें?", "छात्रवृत्तियाँ"]
     },
     scholarship: {
-      response: "आप 'छात्र सेवाएं' के तहत कॉलेज की वेबसाइट से छात्रवृत्ति फॉर्म डाउनलोड कर सकते हैं।",
-      quickReplies: ["फॉर्म डाउनलोड करें", "पात्रता मापदंड"]
+      response: "सभी छात्रवृत्ति विवरणों के लिए, कृपया आधिकारिक वीजीयू वेबसाइट पर जाएं: https://www.vgu.ac.in/। विशिष्ट प्रश्नों के लिए, हम सीधे प्रवेश कार्यालय से संपर्क करने की सलाह देते हैं।",
+      quickReplies: ["प्रवेश", "कोर्स", "शुल्क संरचना"]
     },
     courses: {
       response: "पाठ्यक्रमों की जानकारी के लिए, कृपया कॉलेज के आधिकारिक पृष्ठ पर जाएं: https://www.vgu.ac.in/",
@@ -147,17 +128,26 @@ const responses = {
       response: "कैंपस जीवन, जिसमें कार्यक्रम, क्लब और सुविधाएं शामिल हैं, के बारे में जानकारी के लिए, कृपया वीजीयू जयपुर की आधिकारिक वेबसाइट पर जाएं: https://www.vgu.ac.in/",
       quickReplies: ["प्रवेश", "कोर्स", "शुल्क की अंतिम तिथि"]
     },
+    campus_events: {
+      response: "आगामी कैंपस कार्यक्रमों की सूची यहाँ है। PDF डाउनलोड करने के लिए कृपया लिंक पर क्लिक करें।",
+      fileUrl: "http://localhost:5000/public/files/campus_events.pdf",
+      quickReplies: ["शुल्क की अंतिम तिथि", "छात्रवृत्तियाँ", "खुलने का समय"]
+    },
     greeting: {
       response: "नमस्ते! मैं आज आपकी कैसे सहायता कर सकता हूँ?",
-      quickReplies: ["शुल्क की अंतिम तिथि", "छात्रवृत्तियाँ", "कैंपस जीवन"]
-    },
-    handoff: {
-      response: "मैं आपको एक लाइव एजेंट से जोड़ रहा हूँ। कृपया एक क्षण प्रतीक्षा करें।",
-      quickReplies: []
+      quickReplies: ["शुल्क की अंतिम तिथि", "छात्रवृत्तियाँ", "कैंपस कार्यक्रम", "खुलने का समय"]
     },
     fallback: {
-      response: "क्षमा करें, मैं इसे संसाधित नहीं कर सका। कृपया फिर से कहने का प्रयास करें, या किसी मानव एजेंट से बात करने के लिए कहें।",
-      quickReplies: ["प्रवेश", "कोर्स", "एजेंट से बात करें"]
+      response: "मुझे क्षमा करें, मुझे यकीन नहीं है कि इसमें कैसे मदद की जाए। कृपया अपने प्रश्न को फिर से लिखने का प्रयास करें, या आप इनमें से कोई एक विकल्प चुन सकते हैं:",
+      quickReplies: ["शुल्क की अंतिम तिथि", "प्रवेश", "कोर्स"]
+    },
+    opening_hours: {
+      response: "कॉलेज सप्ताह के दिनों में सुबह 9:00 बजे से शाम 6:00 बजे तक खुला रहता है।",
+      quickReplies: ["शुल्क की अंतिम तिथि", "प्रवेश", "कोर्स", "भुगतान कैसे करें के लिए निर्देश"]
+    },
+    submission_complete: {
+      response: "मैंने इसे विभाग को सफलतापूर्वक भेज दिया है।",
+      quickReplies: ["शुल्क की अंतिम तिथि", "छात्रवृत्तियाँ", "कैंपस जीवन"]
     }
   }
 }
@@ -165,6 +155,7 @@ const responses = {
 // --- 2. TRAIN THE NLP MODEL ---
 async function trainNlp() {
   console.log('Training NLP model...');
+
   // Add training data for each intent
   // GREETINGS
   manager.addDocument('en', 'hello', 'greeting');
@@ -226,34 +217,11 @@ async function trainNlp() {
   manager.addDocument('en', 'Contact accounts', 'contact_accounts');
   manager.addDocument('en', 'I need to speak to the accounts department', 'contact_accounts');
   manager.addDocument('en', 'call accounts', 'contact_accounts');
-  manager.addDocument('en', 'sms the accounts team', 'contact_accounts');
   manager.addDocument('en', 'whatsapp the account team', 'contact_accounts');
   manager.addDocument('hi', 'लेखा विभाग से संपर्क करें', 'contact_accounts');
   manager.addDocument('hi', 'मुझे लेखा विभाग से बात करनी है', 'contact_accounts');
   manager.addDocument('hi', 'अकाउंट्स को कॉल करें', 'contact_accounts');
   manager.addDocument('hi', 'अकाउंट्स टीम से संपर्क करना है', 'contact_accounts');
-
-  // CONTACT VIA...
-  manager.addDocument('en', 'Via SMS', 'contact_via_sms');
-  manager.addDocument('en', 'contact me by sms', 'contact_via_sms');
-  manager.addDocument('hi', 'एसएमएस द्वारा', 'contact_via_sms');
-  manager.addDocument('hi', 'मुझे एसएमएस से संपर्क करें', 'contact_via_sms');
-  manager.addDocument('en', 'Via WhatsApp', 'contact_via_whatsapp');
-  manager.addDocument('en', 'contact me by whatsapp', 'contact_via_whatsapp');
-  manager.addDocument('hi', 'व्हाट्सएप द्वारा', 'contact_via_whatsapp');
-  manager.addDocument('hi', 'मुझे व्हाट्सएप से संपर्क करें', 'contact_via_whatsapp');
-
-  // PROVIDE CONTACT NUMBER
-  manager.addDocument('en', 'my number is %phonenumber%', 'provide_contact_number');
-  manager.addDocument('en', 'it is %phonenumber%', 'provide_contact_number');
-  manager.addDocument('en', 'you can reach me at %phonenumber%', 'provide_contact_number');
-  manager.addDocument('en', '%phonenumber%', 'provide_contact_number');
-  manager.addDocument('en', 'here is my number %phonenumber%', 'provide_contact_number');
-  manager.addDocument('hi', 'मेरा नंबर %phonenumber% है', 'provide_contact_number');
-  manager.addDocument('hi', 'यह है %phonenumber%', 'provide_contact_number');
-  manager.addDocument('hi', '%phonenumber%', 'provide_contact_number');
-  manager.addDocument('hi', 'मेरा फोन नंबर %phonenumber% है', 'provide_contact_number');
-  manager.addDocument('hi', 'आप मुझे %phonenumber% पर संपर्क कर सकते हैं', 'provide_contact_number');
 
   // SCHOLARSHIP
   manager.addDocument('en', 'are there any scholarships', 'scholarship');
@@ -291,191 +259,63 @@ async function trainNlp() {
   manager.addDocument('hi', 'कैंपस में कैसा है', 'campus_life');
   manager.addDocument('hi', 'छात्र जीवन', 'campus_life');
 
-  // LIVE AGENT HANDOFF
-  manager.addDocument('en', 'I want to talk to a human', 'handoff');
-  manager.addDocument('en', 'connect me to an agent', 'handoff');
-  manager.addDocument('en', 'speak to representative', 'handoff');
-  manager.addDocument('hi', 'मुझे एक इंसान से बात करनी है', 'handoff');
-  manager.addDocument('hi', 'मुझे एक एजेंट से कनेक्ट करें', 'handoff');
-  manager.addDocument('hi', 'प्रतिनिधि से बात करें', 'handoff');
-  manager.addDocument('hi', 'एजेंट से बात करें', 'handoff');
+  // CAMPUS EVENTS
+  manager.addDocument('en', 'Campus events', 'campus_events');
+  manager.addDocument('en', 'what are the upcoming events', 'campus_events');
+  manager.addDocument('en', 'tell me about events', 'campus_events');
+  manager.addDocument('hi', 'कैंपस कार्यक्रम', 'campus_events');
+  manager.addDocument('hi', 'आगामी कार्यक्रम क्या हैं', 'campus_events');
+  manager.addDocument('hi', 'कार्यक्रमों के बारे में बताएं', 'campus_events');
 
-  // Train the model
+  // OPENING HOURS
+  manager.addDocument('en', 'Opening hours', 'opening_hours');
+  manager.addDocument('en', 'what are the college timings', 'opening_hours');
+  manager.addDocument('en', 'when is the college open', 'opening_hours');
+  manager.addDocument('hi', 'खुलने का समय', 'opening_hours');
+  manager.addDocument('hi', 'कॉलेज का समय क्या है', 'opening_hours');
+  manager.addDocument('hi', 'कॉलेज कब खुलता है', 'opening_hours');
+
+  // Train the model and save it
   await manager.train();
-  manager.save(); // Save the trained model
+  manager.save();
   console.log('NLP model trained successfully!');
 }
 
 // Train the model on server startup
 trainNlp();
 
-// --- 3. LIVE AGENT HANDOFF SETUP ---
-const transporter = nodemailer.createTransport({
-  service: 'gmail', // or another email service
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS, // For Gmail, use an "App Password"
-  },
-});
-
-async function notifyLiveAgent(message, history) {
-  if (!process.env.EMAIL_USER || !process.env.SUPPORT_EMAIL) {
-    console.log('Live agent email notification is not configured. Please set EMAIL_USER and SUPPORT_EMAIL in your .env file. Skipping.');
-    return;
-  }
-  const chatHistory = history.map(m => `${m.sender}: ${m.text}`).join('\n');
-  try {
-    await transporter.sendMail({
-      from: `"CampusBot" <${process.env.EMAIL_USER}>`,
-      to: process.env.SUPPORT_EMAIL,
-      subject: 'New Live Agent Request',
-      text: `A user requested a live agent.\n\nLast message: ${message}\n\nConversation History:\n${history.length > 0 ? chatHistory : 'N/A'}`,
-    });
-    console.log('Live agent notification email sent.');
-  } catch (error) {
-    console.error('Error sending agent notification:', error);
-  }
-}
+// --- 4. CORE BOT LOGIC ---
 
 /**
- * Sends an SMS notification to the accounts team using Twilio
- */
-async function sendSmsToAccounts(studentPhoneNumber) {
-  const accountSid = process.env.TWILIO_ACCOUNT_SID;
-  const authToken = process.env.TWILIO_AUTH_TOKEN;
-  const twilioPhone = process.env.TWILIO_PHONE_NUMBER;
-  const accountsPhone = process.env.ACCOUNTS_TEAM_PHONE_NUMBER;
-
-  if (!accountSid || !authToken || !twilioPhone || !accountsPhone) {
-    console.log('Twilio SMS notification is not configured. Please set TWILIO variables in your .env file. Skipping.');
-    return false; // Indicate failure
-  }
-
-  const client = twilio(accountSid, authToken);
-  const smsBody = `hey A student whose Number is ${studentPhoneNumber}. Pls contact them and sovle there issue😊😊`;
-
-  try {
-    await client.messages.create({
-      body: smsBody,
-      from: twilioPhone,
-      to: accountsPhone
-    });
-    console.log('Twilio SMS to accounts team sent successfully.');
-    return true; // Indicate success
-  } catch (error) {
-    console.error('Error sending Twilio SMS:', error);
-    return false; // Indicate failure
-  }
-}
-
-/**
- * Sends a WhatsApp notification to the accounts team using Twilio
- */
-async function sendWhatsAppToAccounts(studentPhoneNumber) {
-  const accountSid = process.env.TWILIO_ACCOUNT_SID;
-  const authToken = process.env.TWILIO_AUTH_TOKEN;
-  const twilioPhone = process.env.TWILIO_PHONE_NUMBER;
-  const accountsPhone = process.env.ACCOUNTS_TEAM_PHONE_NUMBER;
-
-  if (!accountSid || !authToken || !twilioPhone || !accountsPhone) {
-    console.log('Twilio WhatsApp notification is not configured. Please set TWILIO variables in your .env file. Skipping.');
-    return false; // Indicate failure
-  }
-
-  const client = twilio(accountSid, authToken);
-  const messageBody = `hey A student whose Number is ${studentPhoneNumber}. Pls contact them and sovle there issue😊😊`;
-
-  try {
-    await client.messages.create({
-      body: messageBody,
-      from: `whatsapp:${twilioPhone}`,
-      to: `whatsapp:${accountsPhone}`
-    });
-    console.log('Twilio WhatsApp to accounts team sent successfully.');
-    return true; // Indicate success
-  } catch (error) {
-    console.error('Error sending Twilio WhatsApp:', error);
-    return false; // Indicate failure
-  }
-}
-
-/**
- * Get bot response based on user message and language
+ * Determines the appropriate bot response based on user input and conversation history.
+ * @param {string} message - The user's message.
+ * @param {string} language - The current language ('en' or 'hi').
+ * @param {Array} history - The array of previous messages.
+ * @returns {Promise<object>} A response object for the frontend.
  */
 async function getBotResponse(message, language = "en", history = []) {
   const lang = responses[language] ? language : 'en';
   const langResponses = responses[lang];
 
-  // Process the user's message with the NLP manager
+  // --- Priority 2: If not in a special flow, process with NLP ---
   const nlpResult = await manager.process(lang, message);
-  const intent = nlpResult.intent;
-  const entities = nlpResult.entities;
-  const score = nlpResult.score;
-
+  const { intent, score, entities } = nlpResult;
   console.log(`NLP Result: Intent='${intent}', Score=${score}`);
 
-  // Check if the top intent has enough confidence
+  // --- Standard Intent Matching ---
   if (intent && score > NLP_CONFIDENCE_THRESHOLD && langResponses[intent]) {
-    // Handle special intents with custom logic
-    switch (intent) {
-      case 'provide_contact_number': {
-        const phoneEntity = entities.find(e => e.entity === 'phonenumber');
-        if (phoneEntity) {
-          const studentPhoneNumber = phoneEntity.sourceText;
-          const lastBotMessage = history.filter(m => m.sender === 'bot').pop();
-          let notificationSent = false;
+    const matchedResponse = langResponses[intent];
 
-          if (lastBotMessage && lastBotMessage.text.toLowerCase().includes('whatsapp')) {
-            notificationSent = await sendWhatsAppToAccounts(studentPhoneNumber);
-          } else {
-            notificationSent = await sendSmsToAccounts(studentPhoneNumber);
-          }
-
-          if (!notificationSent) {
-            return {
-              response: "I'm sorry, I couldn't send the notification at the moment. Please try again later or ask to speak to a human agent.",
-              quickReplies: ["Speak to an agent", "Fee structure"]
-            };
-          }
-
-          const matchedIntent = langResponses.provide_contact_number;
-          return {
-            response: matchedIntent.response,
-            quickReplies: matchedIntent.quickReplies || []
-          };
-        } else {
-          return {
-            response: "I'm sorry, I couldn't recognize a phone number. Please provide a valid phone number.",
-            quickReplies: []
-          };
-        }
-      }
-      case 'handoff': {
-        notifyLiveAgent(message, history).catch(console.error);
-        const matchedIntent = langResponses.handoff;
-        return {
-          response: matchedIntent.response,
-          quickReplies: matchedIntent.quickReplies || []
-        };
-      }
-      // For all other standard intents, return the predefined response
-      default: {
-        const matchedIntent = langResponses[intent];
-        return {
-          response: matchedIntent.response,
-          quickReplies: matchedIntent.quickReplies || []
-        };
-      }
-    }
+    // For all other simple intents
+    return {
+      response: matchedResponse.response,
+      quickReplies: matchedResponse.quickReplies || [],
+      fileUrl: matchedResponse.fileUrl || null
+    };
   }
 
-  // If no intent reached the confidence threshold, use the fallback
-  const matchedIntent = langResponses.fallback;
-
-  return {
-    response: matchedIntent.response,
-    quickReplies: matchedIntent.quickReplies || []
-  }
+  // --- Fallback if no intent is matched ---
+  return langResponses.fallback;
 }
 
 module.exports = { getBotResponse };
